@@ -199,14 +199,15 @@
 }
 
 /* ================================================================== */
-/*  HERO SECTION — Luxury Gold + Warm White (4 Art Director Rules)     */
-/*  Rule 1: #FAFAF7 warm white · #C5A059 matte gold · #1E1E1E charcoal */
-/*  Rule 2: Outline CTA + gold heading accents + gold stat numbers     */
-/*  Rule 3: Ambient gold gradients (5-10%) + gold image shadow         */
-/*  Rule 4: Glassmorphism stats + Vazirmatn typography RTL             */
+/*  HERO SECTION — 5 Luxury Visual Techniques                          */
+/*  1: Ambient Lighting (radial spotlight, NOT flat white)             */
+/*  2: Image Blending (soft shadow + bottom fade)                      */
+/*  3: Frosted Glass Stats (glassmorphism)                             */
+/*  4: High-Contrast Typography (#1E1E1E heading + #555555 body)      */
+/*  5: 3D CTA Button (gold gradient + shadow + hover lift)            */
 /* ================================================================== */
 
-/* ═══ RULE 1: Background — warm white #FAFAF7, never #FFFFFF ═══ */
+/* ═══ TECHNIQUE 1: Background — warm white #FAFAF7 with ambient glow ═══ */
 #hero {
   background: #FAFAF7 !important;
 }
@@ -217,7 +218,7 @@
   content: none !important;
 }
 
-/* ═══ RULE 2: Heading — charcoal #1E1E1E with gold underline accent ═══ */
+/* ═══ TECHNIQUE 4: Heading — charcoal #1E1E1E + gold underline accent ═══ */
 .hero-heading-luxury {
   color: #1E1E1E !important;
   position: relative;
@@ -261,57 +262,79 @@
   background: linear-gradient(to left, #C5A059, transparent);
 }
 
-/* ═══ RULE 2: CTA — Outline/Luxury Ghost Button ═══
-    Transparent bg, 2px gold border, gold text
-    Hover: gold bg + white text */
-.hero-cta-outline {
-  background: transparent !important;
-  border: 2px solid #C5A059 !important;
-  color: #C5A059 !important;
-  box-shadow: 0 4px 20px rgba(197,160,89,0.10) !important;
+/* ═══ TECHNIQUE 5: 3D CTA Button ═══
+    Gold gradient (#D4AF37 → #C5A059), dark text,
+    golden shadow 0 10px 25px, hover: lift + bigger shadow */
+.hero-cta-3d {
+  background: linear-gradient(135deg, #D4AF37, #C5A059) !important;
+  color: #1E1E1E !important;
+  border: none !important;
+  box-shadow: 0 10px 25px -5px rgba(197,160,89,0.4) !important;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.22,1,0.36,1) !important;
+  position: relative;
+  overflow: hidden;
 }
-.hero-cta-outline:hover {
-  background: #C5A059 !important;
-  border-color: #C5A059 !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 8px 32px rgba(197,160,89,0.30) !important;
+/* Subtle shine overlay */
+.hero-cta-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.6s ease;
+}
+.hero-cta-3d:hover::before {
+  left: 100%;
+}
+.hero-cta-3d:hover {
+  background: linear-gradient(135deg, #D4AF37, #C5A059) !important;
+  color: #1E1E1E !important;
+  box-shadow: 0 16px 40px -5px rgba(197,160,89,0.50) !important;
   transform: translateY(-2px) !important;
 }
-.hero-cta-outline:active {
+.hero-cta-3d:active {
   transform: translateY(0) !important;
-  box-shadow: 0 4px 16px rgba(197,160,89,0.20) !important;
+  box-shadow: 0 6px 20px -5px rgba(197,160,89,0.35) !important;
 }
 
 /* Keep the global .btn-cta styles for OTHER sections (booking, etc.) */
-/* Hero uses .hero-cta-outline instead — do NOT override here */
+/* Hero uses .hero-cta-3d instead — do NOT override here */
 
-/* ═══ RULE 2: Stat numbers — GOLD #C5A059 ═══ */
+/* ═══ TECHNIQUE 4: Stat numbers — GOLD #C5A059 ═══ */
 #hero .stat-num {
   color: #C5A059 !important;
 }
 
-/* ═══ RULE 4: Glassmorphism stat boxes ═══ */
+/* ═══ TECHNIQUE 3: Frosted Glass Stats ═══
+    rgba(255,255,255,0.65) + blur(12px) + gold border 0.4 */
 .hero-stat-float {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(197, 160, 89, 0.3) !important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(197, 160, 89, 0.4) !important;
   border-radius: 1rem !important;
   padding: 0.875rem 1.25rem !important;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.35s ease !important;
 }
 .hero-stat-float:hover {
-  border-color: rgba(197, 160, 89, 0.5) !important;
-  box-shadow: 0 12px 40px rgba(197,160,89,0.12) !important;
+  border-color: rgba(197, 160, 89, 0.6) !important;
+  box-shadow: 0 12px 40px rgba(197,160,89,0.15) !important;
+  transform: translateY(-2px) !important;
 }
 
-/* ═══ RULE 3: Image mask + gold shadow (depth) ═══ */
+/* ═══ TECHNIQUE 2: Image Blending — soft shadow + edge fade ═══
+    Shadow: -20px 20px 60px for depth/3D feel
+    RTL: shadow direction flips (20px 20px) */
 .hero-img-mask {
   position: relative;
-  box-shadow: 0 20px 60px rgba(197,160,89,0.20) !important;
+  box-shadow: -20px 20px 60px rgba(0,0,0,0.10) !important;
+}
+:root[dir="rtl"] .hero-img-mask {
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.10) !important;
 }
 /* LTR: right edge of image fades into #FAFAF7 */
 .hero-img-mask::after {

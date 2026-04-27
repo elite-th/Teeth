@@ -73,14 +73,17 @@ export default function Hero() {
       className="relative min-h-screen flex items-center pt-20 lg:pt-24 overflow-hidden"
       style={{ background: "#FAFAF7" }}
     >
-      {/* ═══ RULE 3: Ambient gold gradients — break flatness ═══
-          Two soft radial glows: top-corner studio light + bottom warm wash */}
+      {/* ═══ TECHNIQUE 1: Ambient Lighting ═══
+          Studio spotlight: soft radial gold glow from the doctor-image side,
+          fading to warm white at edges — eliminates flat bg */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background: isRtl
-            ? "radial-gradient(ellipse 60% 50% at 25% 20%, rgba(197,160,89,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 70% 80%, rgba(197,160,89,0.05) 0%, transparent 60%)"
-            : "radial-gradient(ellipse 60% 50% at 75% 20%, rgba(197,160,89,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 30% 80%, rgba(197,160,89,0.05) 0%, transparent 60%)",
+            /* RTL: spotlight from left (image side) + secondary warm fill */
+            ? "radial-gradient(ellipse 70% 60% at 30% 40%, rgba(197,160,89,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 70% 80%, rgba(197,160,89,0.04) 0%, transparent 60%)"
+            /* LTR: spotlight from right (image side) + secondary warm fill */
+            : "radial-gradient(ellipse 70% 60% at 70% 40%, rgba(197,160,89,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 30% 80%, rgba(197,160,89,0.04) 0%, transparent 60%)",
         }}
       />
 
@@ -110,7 +113,9 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* ═══ RULE 2: Heading — charcoal #1E1E1E with gold underline accent ═══ */}
+            {/* ═══ TECHNIQUE 4: High-Contrast Typography ═══
+                Heading: #1E1E1E charcoal, large, bold (700)
+                Subtitle: #555555 medium grey — keeps heading dominant */}
             <h1
               className="hero-heading-luxury font-display text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight mb-6"
               data-hero-anim=".3s"
@@ -126,7 +131,7 @@ export default function Hero() {
               ) : null}
             </h1>
 
-            {/* Subtitle — charcoal grey */}
+            {/* Subtitle — medium grey for readability without competing with heading */}
             <p
               className="text-lg sm:text-xl leading-[1.8] max-w-lg mx-auto lg:mx-0 mb-10"
               style={{ color: "#555555" }}
@@ -135,9 +140,9 @@ export default function Hero() {
               {t("hero.subtitle")}
             </p>
 
-            {/* ═══ RULE 2: CTA — Outline/Luxury Ghost Button ═══
-                Transparent bg, 2px gold border, gold text
-                Hover: gold bg + white text */}
+            {/* ═══ TECHNIQUE 5: 3D CTA Button ═══
+                Gold gradient (#D4AF37 → #C5A059), dark text,
+                golden shadow, hover lift + shadow expand */}
             <div
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-12"
               data-hero-anim="1s"
@@ -145,7 +150,7 @@ export default function Hero() {
               <MagneticWrap>
                 <button
                   onClick={() => scrollToElement("#booking")}
-                  className="hero-cta-outline inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] w-full sm:w-auto justify-center transition-all duration-300"
+                  className="hero-cta-3d inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] w-full sm:w-auto justify-center"
                 >
                   <CalendarCheck className="w-4 h-4" />
                   {t("hero.cta_book")}
@@ -161,8 +166,9 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* ═══ RULE 2: Stats — gold numbers #C5A059 ═══
-                RULE 4: Glassmorphism boxes */}
+            {/* ═══ TECHNIQUE 3: Frosted Glass Stats ═══
+                Glassmorphism: rgba(255,255,255,0.65), blur(12px),
+                border rgba(197,160,89,0.4), gold numbers */}
             <div
               className="flex items-center gap-4 sm:gap-5 justify-center lg:justify-start"
               data-hero-anim="1.2s"
@@ -203,16 +209,24 @@ export default function Hero() {
           </div>
 
           {/* ═══════════════════════════════════════════════
-              IMAGE COLUMN — Soft Mask + Gold Shadow
+              IMAGE COLUMN — TECHNIQUE 2: Image Blending
+              Soft shadow + bottom fade = seamless bg integration
               ═══════════════════════════════════════════════ */}
           <div className="relative hidden lg:block" data-parallax="0.03">
             <div className="relative">
-              {/* Doctor image with soft-edge fade mask + gold glow shadow */}
+              {/* Doctor image with soft shadow + bottom fade mask */}
               <div className="hero-img-mask rounded-[2rem] overflow-hidden">
                 <img
                   src="/images/hero-dental.png"
                   alt={t("hero.img_alt")}
                   className="w-full h-[560px] object-cover"
+                />
+                {/* Bottom fade: image dissolves into bg — no hard edge */}
+                <div
+                  className="absolute bottom-0 inset-x-0 h-24 pointer-events-none"
+                  style={{
+                    background: "linear-gradient(to top, #FAFAF7, transparent)",
+                  }}
                 />
               </div>
 
@@ -220,10 +234,10 @@ export default function Hero() {
               <div
                 className="absolute -top-5 -end-5 rounded-2xl shadow-xl p-4"
                 style={{
-                  background: "rgba(255,255,255,0.7)",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(197,160,89,0.3)",
+                  background: "rgba(255,255,255,0.65)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(197,160,89,0.4)",
                   boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
                 }}
                 data-hero-anim="1.4s"
@@ -253,10 +267,10 @@ export default function Hero() {
               <div
                 className="absolute -bottom-5 -start-5 rounded-2xl shadow-xl p-4"
                 style={{
-                  background: "rgba(255,255,255,0.7)",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(197,160,89,0.3)",
+                  background: "rgba(255,255,255,0.65)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(197,160,89,0.4)",
                   boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
                 }}
                 data-hero-anim="1.6s"
@@ -303,9 +317,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Decorative Circle — subtle gold ring */}
+              {/* Decorative gold rings for depth */}
               <div className="absolute -z-10 -top-12 -end-12 w-48 h-48 rounded-full border border-[#C5A059]/15" />
-              {/* Extra decorative ring for depth */}
               <div className="absolute -z-10 -bottom-8 -start-8 w-32 h-32 rounded-full border border-[#C5A059]/10" />
             </div>
           </div>
