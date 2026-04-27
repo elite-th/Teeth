@@ -53,10 +53,10 @@ export default function MobileStickyCta() {
     >
       <div className="bg-white/90 backdrop-blur-xl border-t border-rose-200/60 px-4 py-3">
         <button
-          className={`btn-cta w-full flex items-center justify-center gap-2 text-gray-900 font-bold shadow-lg shadow-amber-500/20 ${
+          className={`btn-cta w-full flex items-center justify-center gap-2 font-bold shadow-lg ${
             isRtl
-              ? "rounded-2xl px-6 py-4 text-[14px]"
-              : "rounded-xl px-6 py-3.5 text-[13px]"
+              ? "rounded-2xl px-6 py-4 text-[14px] text-white bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 shadow-teal-500/20"
+              : "rounded-xl px-6 py-3.5 text-[13px] text-gray-900 shadow-amber-500/20"
           }`}
           onClick={() => scrollToElement("#booking")}
         >

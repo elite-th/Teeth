@@ -153,7 +153,11 @@ export default function About() {
               <MagneticWrap>
                 <button
                   onClick={() => scrollToElement("#booking")}
-                  className="btn-cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-gray-900 font-bold text-[13px] shadow-lg shadow-amber-500/20"
+                  className={`btn-cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-[13px] shadow-lg ${
+                    isRtl
+                      ? "text-white bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 shadow-teal-500/20 rounded-2xl py-4 text-[14px]"
+                      : "text-gray-900 shadow-amber-500/20"
+                  }`}
                 >
                   {t("about.cta")} <ArrowRight className="w-3 h-3 rtl:-scale-x-100" />
                 </button>

@@ -128,126 +128,125 @@
 }
 
 /* ================================================================== */
-/*  RULE 1: Visual Integrity — Luxury Gold + Warm White for RTL       */
-/*  #FAFAF7 bg, #C5A059 gold accent, #1E1E1E dark charcoal text       */
-/*  Golden shadows, outline CTA, golden gradient overlays              */
+/*  RULE 1: Visual Integrity — Clean White + Medical Teal for RTL     */
+/*  White/near-white bg, teal accents on buttons/icons only           */
+/*  Neutral soft shadows for medical trust & hygiene feel             */
 /* ================================================================== */
 
-/* Hero section: warm white background for RTL */
+/* Hero section: clean white background for RTL */
 :root[dir="rtl"] #hero {
-  background: linear-gradient(160deg, #FAFAF7 0%, #F5F0E8 30%, #FFFDF8 60%, #FFFFFF 100%) !important;
+  background: linear-gradient(160deg, #FFFFFF 0%, #F8FFFE 30%, #F0FDFA 60%, #FFFFFF 100%) !important;
 }
 
-/* Hero mesh blobs: very subtle golden in RTL */
+/* Hero mesh blobs: very subtle teal in RTL */
 :root[dir="rtl"] .hero-mesh-blob {
   opacity: 0.06 !important;
 }
 
-/* Hero gradient overlay: golden tint in RTL */
+/* Hero gradient overlay: subtle teal tint in RTL */
 :root[dir="rtl"] #hero .bg-gradient-to-b {
-  background: linear-gradient(to bottom, rgba(197,160,89,0.05), rgba(255,255,255,0.4)) !important;
+  background: linear-gradient(to bottom, rgba(13,148,136,0.02), rgba(255,255,255,0.4)) !important;
 }
 
-/* Hero text colors: dark charcoal on warm white bg */
+/* Hero text colors: dark charcoal on white bg */
 :root[dir="rtl"] #hero h1 {
-  color: #1E1E1E !important;
+  color: #1A2332 !important;
 }
 :root[dir="rtl"] #hero .text-teal-200\/60,
 :root[dir="rtl"] #hero p.text-teal-200\/60 {
-  color: rgba(30, 30, 30, 0.55) !important;
+  color: rgba(26, 35, 50, 0.55) !important;
 }
 :root[dir="rtl"] #hero .text-teal-300\/50 {
-  color: rgba(30, 30, 30, 0.40) !important;
+  color: rgba(26, 35, 50, 0.40) !important;
 }
 :root[dir="rtl"] #hero .text-teal-200 {
-  color: #C5A059 !important;
+  color: #0d9488 !important;
 }
 :root[dir="rtl"] #hero .text-teal-300 {
-  color: #C5A059 !important;
+  color: #0d9488 !important;
 }
 :root[dir="rtl"] #hero .bg-white\/10 {
-  background: rgba(197, 160, 89, 0.08) !important;
-  border-color: rgba(197, 160, 89, 0.20) !important;
+  background: rgba(13, 148, 136, 0.06) !important;
+  border-color: rgba(13, 148, 136, 0.15) !important;
 }
 :root[dir="rtl"] #hero .bg-gradient-to-r.from-teal-300 {
-  background: linear-gradient(to right, #C5A059, #D4B06A, #B08D3E) !important;
+  background: linear-gradient(to right, #0d9488, #10b981, #0d9488) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Hero floating badges: golden soft shadows on warm white bg */
+/* Hero floating badges: white with soft neutral shadows */
 :root[dir="rtl"] #hero .backdrop-blur-xl {
-  background: rgba(255, 255, 255, 0.90) !important;
-  border-color: rgba(197, 160, 89, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(197, 160, 89, 0.10), 0 2px 8px rgba(197, 160, 89, 0.06) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(13, 148, 136, 0.10) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03) !important;
 }
 :root[dir="rtl"] #hero .backdrop-blur-xl .text-white {
-  color: #1E1E1E !important;
+  color: #1A2332 !important;
 }
 :root[dir="rtl"] #hero .backdrop-blur-xl .text-white\/50 {
-  color: rgba(30, 30, 30, 0.40) !important;
+  color: rgba(26, 35, 50, 0.40) !important;
 }
 :root[dir="rtl"] #hero .backdrop-blur-xl .bg-teal-400\/20 {
-  background: rgba(197, 160, 89, 0.10) !important;
-  color: #C5A059 !important;
+  background: rgba(13, 148, 136, 0.08) !important;
+  color: #0d9488 !important;
 }
 :root[dir="rtl"] #hero .backdrop-blur-xl .border-\[\#134e4a\] {
-  border-color: rgba(197, 160, 89, 0.20) !important;
+  border-color: rgba(13, 148, 136, 0.15) !important;
 }
 
 /* Hero stats: dark charcoal text */
 :root[dir="rtl"] #hero .text-white {
-  color: #1E1E1E !important;
+  color: #1A2332 !important;
 }
 :root[dir="rtl"] #hero .text-2xl.text-white,
 :root[dir="rtl"] #hero .text-3xl.text-white {
-  color: #1E1E1E !important;
+  color: #1A2332 !important;
 }
 
-/* Hero CTA: outline gold style for RTL */
+/* Hero CTA: teal filled gradient for RTL */
 :root[dir="rtl"] #hero .btn-cta {
-  color: #C5A059 !important;
-  background: transparent !important;
-  border: 2px solid #C5A059 !important;
-  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.15) !important;
+  background: linear-gradient(135deg, #0d9488, #059669) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.25) !important;
 }
 :root[dir="rtl"] #hero .btn-cta:hover {
-  background: #C5A059 !important;
+  background: linear-gradient(135deg, #0f766e, #047857) !important;
   color: #FFFFFF !important;
-  border-color: #C5A059 !important;
-  box-shadow: 0 12px 36px rgba(197, 160, 89, 0.30) !important;
+  box-shadow: 0 12px 36px rgba(13, 148, 136, 0.35) !important;
 }
 
-/* Hero explore button: gold accent */
+/* Hero explore button: teal accent */
 :root[dir="rtl"] #hero .text-teal-200\/70 {
-  color: rgba(197, 160, 89, 0.70) !important;
+  color: rgba(13, 148, 136, 0.70) !important;
 }
 :root[dir="rtl"] #hero .hover\:bg-white\/5:hover {
-  background: rgba(197, 160, 89, 0.05) !important;
+  background: rgba(13, 148, 136, 0.05) !important;
 }
 
-/* Hero image gradient overlay: golden tint */
+/* Hero image gradient overlay: teal tint */
 :root[dir="rtl"] #hero .from-\[\#042f2e\]\/60 {
-  background: linear-gradient(to top, rgba(197, 160, 89, 0.15), transparent) !important;
+  background: linear-gradient(to top, rgba(13, 148, 136, 0.15), transparent) !important;
 }
 
-/* Hero divider lines: golden instead of teal */
+/* Hero divider lines: teal instead of gold */
 :root[dir="rtl"] #hero .bg-gradient-to-b.from-transparent.via-teal-400\/30 {
-  background: linear-gradient(to bottom, transparent, rgba(197, 160, 89, 0.20), transparent) !important;
+  background: linear-gradient(to bottom, transparent, rgba(13, 148, 136, 0.20), transparent) !important;
 }
 
-/* Dot pattern: very subtle gold */
+/* Dot pattern: very subtle teal */
 :root[dir="rtl"] #hero .opacity-\[0\.03\] {
   opacity: 0.015 !important;
 }
 
-/* Pulse dot: gold instead of teal */
+/* Pulse dot: teal instead of gold */
 :root[dir="rtl"] #hero .bg-teal-300 {
-  background: #C5A059 !important;
+  background: #0d9488 !important;
 }
 :root[dir="rtl"] #hero .pulse-dot::after {
-  border-color: #C5A059 !important;
+  border-color: #0d9488 !important;
 }
 
 /* Hero badge uppercase tracking fix for RTL */
@@ -345,13 +344,14 @@ select.form-input {
   text-align: start;
 }
 
-/* Form Input RTL text alignment — already covered above */
+/* Form Input RTL text alignment */
 :root[dir="rtl"] .form-input {
   text-align: start;
 }
 
 /* ================================================================== */
 /*  RULE 3: CTA Buttons — More padding-y & rounder for RTL            */
+/*  Teal/green gradient for medical trust feel                         */
 /* ================================================================== */
 
 :root[dir="rtl"] .btn-cta {
@@ -460,79 +460,80 @@ select.form-input {
 }
 
 /* ================================================================== */
-/*  RULE 5: Shadows & Depth — Golden soft shadows for luxury trust     */
+/*  RULE 5: Shadows & Depth — Neutral soft shadows for medical trust  */
+/*  Clean, subtle shadows that convey professionalism & reliability    */
 /* ================================================================== */
 
-/* Doctor photo frame: golden soft shadow */
+/* Doctor photo frame: soft neutral shadow */
 :root[dir="rtl"] #about .shadow-xl {
   box-shadow:
-    0 10px 40px rgba(197, 160, 89, 0.10),
+    0 10px 40px rgba(0, 0, 0, 0.07),
     0 2px 12px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* Service cards: elegant golden soft shadow */
+/* Service cards: elegant soft shadow */
 :root[dir="rtl"] .service-card {
   box-shadow:
-    0 4px 24px rgba(197, 160, 89, 0.06),
+    0 4px 24px rgba(0, 0, 0, 0.05),
     0 1px 6px rgba(0, 0, 0, 0.03) !important;
 }
 :root[dir="rtl"] .service-card:hover {
   box-shadow:
-    0 20px 50px rgba(197, 160, 89, 0.14),
-    0 6px 16px rgba(197, 160, 89, 0.08) !important;
+    0 20px 50px rgba(0, 0, 0, 0.08),
+    0 6px 16px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* About badge overlay: golden depth shadow */
+/* About badge overlay: neutral depth shadow */
 :root[dir="rtl"] #about .backdrop-blur-xl,
 :root[dir="rtl"] #about .bg-white\/15 {
   box-shadow:
-    0 8px 28px rgba(197, 160, 89, 0.10),
-    0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    0 8px 28px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03) !important;
 }
 
-/* Rating badges / stat cards: golden soft shadow */
+/* Rating badges / stat cards: soft neutral shadow */
 :root[dir="rtl"] .testi-glass {
   box-shadow:
-    0 4px 20px rgba(197, 160, 89, 0.08),
-    0 1px 6px rgba(0, 0, 0, 0.03) !important;
-  border: 1px solid rgba(197, 160, 89, 0.15) !important;
+    0 4px 20px rgba(0, 0, 0, 0.05),
+    0 1px 6px rgba(0, 0, 0, 0.02) !important;
+  border: 1px solid rgba(110, 231, 183, 0.12) !important;
 }
 
-/* Process cards: golden soft depth */
+/* Process cards: soft depth */
 :root[dir="rtl"] .process-card {
   box-shadow:
-    0 6px 28px rgba(197, 160, 89, 0.09),
-    0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    0 6px 28px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03) !important;
 }
 :root[dir="rtl"] .process-card:hover {
   box-shadow:
-    0 16px 40px rgba(197, 160, 89, 0.16),
-    0 4px 12px rgba(197, 160, 89, 0.08) !important;
+    0 16px 40px rgba(0, 0, 0, 0.10),
+    0 4px 12px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Booking card: golden elegant shadow */
+/* Booking card: elegant shadow */
 :root[dir="rtl"] .booking-card .bg-white {
   box-shadow:
-    0 12px 48px rgba(197, 160, 89, 0.10),
-    0 4px 16px rgba(197, 160, 89, 0.06) !important;
+    0 12px 48px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.03) !important;
 }
 
-/* Form inputs: golden subtle depth */
+/* Form inputs: subtle depth */
 :root[dir="rtl"] .form-input {
-  box-shadow: 0 1px 4px rgba(197, 160, 89, 0.04) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03) !important;
 }
 :root[dir="rtl"] .form-input:focus {
   box-shadow:
-    0 0 0 4px rgba(197, 160, 89, 0.10),
-    0 2px 8px rgba(197, 160, 89, 0.06) !important;
+    0 0 0 4px rgba(13, 148, 136, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* Time slots: golden subtle shadow */
+/* Time slots: subtle shadow */
 :root[dir="rtl"] .time-slot {
-  box-shadow: 0 1px 4px rgba(197, 160, 89, 0.05) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
 }
 :root[dir="rtl"] .time-slot.selected {
-  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.25) !important;
+  box-shadow: 0 6px 20px rgba(244, 63, 94, 0.20) !important;
 }
 
 /* ================================================================== */
@@ -591,8 +592,8 @@ html {
 }
 .custom-cursor.hovering {
   width: 60px; height: 60px;
-  border-color: #D4A843;
-  background: rgba(212,168,67,0.06);
+  border-color: #0d9488;
+  background: rgba(13,148,136,0.06);
 }
 .custom-cursor.clicking {
   width: 28px; height: 28px;

@@ -114,9 +114,9 @@ export default function Gallery() {
     },
   ];
 
-  /* RTL-aware CTA button classes */
+  /* RTL-aware CTA button classes — teal for medical trust */
   const ctaBtnClass = isRtl
-    ? "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-gray-900 font-bold text-[14px] shadow-lg shadow-amber-500/20"
+    ? "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-white font-bold text-[14px] shadow-lg bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 shadow-teal-500/20"
     : "btn-cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-gray-900 font-bold text-[13px] shadow-lg shadow-amber-500/20";
 
   return (

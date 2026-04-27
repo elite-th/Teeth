@@ -66,42 +66,42 @@ export default function Hero() {
     });
   }, []);
 
-  /* ── RTL: Luxury Gold + Warm White palette ── */
-  const textMain = isRtl ? "text-[#1E1E1E]" : "text-white";
-  const textSub = isRtl ? "text-[#1E1E1E]/55" : "text-teal-200/60";
-  const textMuted = isRtl ? "text-[#1E1E1E]/40" : "text-teal-300/50";
+  /* ── RTL: Clean White + Medical Teal palette ── */
+  const textMain = isRtl ? "text-[#1A2332]" : "text-white";
+  const textSub = isRtl ? "text-[#1A2332]/55" : "text-teal-200/60";
+  const textMuted = isRtl ? "text-[#1A2332]/40" : "text-teal-300/50";
   const badgeBg = isRtl
-    ? "bg-[#C5A059]/10 border-[#C5A059]/25"
+    ? "bg-teal-50 border-teal-200/60"
     : "bg-white/10 border-white/10";
-  const badgeText = isRtl ? "text-[#C5A059]" : "text-teal-200";
+  const badgeText = isRtl ? "text-teal-700" : "text-teal-200";
   const headingAccent = isRtl
-    ? "bg-gradient-to-r from-[#C5A059] via-[#D4B06A] to-[#B08D3E]"
+    ? "bg-gradient-to-r from-teal-600 via-emerald-500 to-teal-600"
     : "bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-200";
   const exploreText = isRtl
-    ? "text-[#C5A059]/70"
+    ? "text-teal-600/70"
     : "text-teal-200/70";
   const exploreHover = isRtl
-    ? "hover:bg-[#C5A059]/5"
+    ? "hover:bg-teal-50"
     : "hover:bg-white/5";
-  const statValue = isRtl ? "text-[#1E1E1E]" : "text-white";
-  const statLabel = isRtl ? "text-[#C5A059]/50" : "text-teal-300/50";
+  const statValue = isRtl ? "text-[#1A2332]" : "text-white";
+  const statLabel = isRtl ? "text-teal-500/50" : "text-teal-300/50";
   const dividerColor = isRtl
-    ? "from-transparent via-[#C5A059]/20 to-transparent"
+    ? "from-transparent via-teal-300/25 to-transparent"
     : "from-transparent via-teal-400/30 to-transparent";
   const floatingBg = isRtl
-    ? "bg-white/90 border-[#C5A059]/15 shadow-lg shadow-[#C5A059]/10"
+    ? "bg-white/95 border-teal-100 shadow-lg shadow-black/[0.06]"
     : "bg-white/10 border-white/10";
   const floatingIconBg = isRtl
-    ? "from-[#C5A059] to-[#B08D3E] shadow-[#C5A059]/20"
+    ? "from-teal-500 to-emerald-600 shadow-teal-500/20"
     : "from-teal-400 to-emerald-500 shadow-teal-500/30";
-  const floatingText = isRtl ? "text-[#1E1E1E]" : "text-white";
-  const floatingSubText = isRtl ? "text-[#1E1E1E]/40" : "text-white/50";
-  const avatarBorderColor = isRtl ? "#C5A059" : "#134e4a";
+  const floatingText = isRtl ? "text-[#1A2332]" : "text-white";
+  const floatingSubText = isRtl ? "text-[#1A2332]/40" : "text-white/50";
+  const avatarBorderColor = isRtl ? "#0d9488" : "#134e4a";
   const avatarOverflowBg = isRtl
-    ? "bg-[#C5A059]/10 text-[#C5A059]"
+    ? "bg-teal-50 text-teal-700"
     : "bg-teal-400/20 text-teal-200";
   const decorBorderColor = isRtl
-    ? "border-[#C5A059]/20"
+    ? "border-teal-200/30"
     : "border-teal-400/10";
 
   return (
@@ -111,20 +111,20 @@ export default function Hero() {
       className="relative min-h-screen flex items-center pt-20 lg:pt-24 overflow-hidden"
       style={
         isRtl
-          ? { background: "linear-gradient(160deg, #FAFAF7 0%, #F5F0E8 30%, #FFFDF8 60%, #FFFFFF 100%)" }
+          ? { background: "linear-gradient(160deg, #FFFFFF 0%, #F8FFFE 30%, #F0FDFA 60%, #FFFFFF 100%)" }
           : { background: "linear-gradient(160deg, #042f2e 0%, #0a3d3a 30%, #134e4a 60%, #115e59 100%)" }
       }
     >
-      {/* Mesh Blobs — golden tones for RTL */}
+      {/* Mesh Blobs — subtle teal for RTL */}
       <div
         className="hero-mesh-blob"
         style={{
           width: 600,
           height: 600,
-          background: isRtl ? "#C5A059" : "#2dd4bf",
+          background: isRtl ? "#0d9488" : "#2dd4bf",
           top: "-15%",
           insetInlineEnd: "-5%",
-          opacity: isRtl ? 0.08 : 0.2,
+          opacity: isRtl ? 0.06 : 0.2,
         }}
       />
       <div
@@ -132,11 +132,11 @@ export default function Hero() {
         style={{
           width: 500,
           height: 500,
-          background: isRtl ? "#E8BD3E" : "#f59e0b",
+          background: isRtl ? "#14b8a6" : "#f59e0b",
           bottom: "-10%",
           insetInlineStart: "-5%",
           animationDelay: "-5s",
-          opacity: isRtl ? 0.06 : 0.2,
+          opacity: isRtl ? 0.05 : 0.2,
         }}
       />
       <div
@@ -144,30 +144,30 @@ export default function Hero() {
         style={{
           width: 350,
           height: 350,
-          background: isRtl ? "#D4B06A" : "#14b8a6",
+          background: isRtl ? "#5eead4" : "#14b8a6",
           top: "40%",
           insetInlineStart: "30%",
           animationDelay: "-9s",
-          opacity: isRtl ? 0.05 : 0.2,
+          opacity: isRtl ? 0.04 : 0.2,
         }}
       />
 
-      {/* Golden Gradient Overlay for RTL */}
+      {/* Gradient Overlay for RTL — subtle teal tint */}
       <div
         className={`absolute inset-0 z-[1] ${
           isRtl
-            ? "bg-gradient-to-b from-[#C5A059]/5 via-transparent to-white/40"
+            ? "bg-gradient-to-b from-teal-500/[0.02] via-transparent to-white/60"
             : "bg-gradient-to-b from-transparent via-transparent to-[#042f2e]/90"
         }`}
       />
 
-      {/* Dot Pattern — subtle gold for RTL */}
+      {/* Dot Pattern — subtle teal for RTL */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
           opacity: isRtl ? 0.015 : 0.03,
           backgroundImage: isRtl
-            ? "radial-gradient(circle,#C5A059 1px,transparent 1px)"
+            ? "radial-gradient(circle,#0d9488 1px,transparent 1px)"
             : "radial-gradient(circle,#fff 1px,transparent 1px)",
           backgroundSize: "48px 48px",
         }}
@@ -177,12 +177,12 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-start">
-            {/* Badge — gold outline style for RTL */}
+            {/* Badge — teal outline style for RTL */}
             <div
               className={`inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full ${badgeBg} shadow-sm mb-6 sm:mb-8 backdrop-blur-sm`}
               data-hero-anim=".1s"
             >
-              <span className={`w-2 h-2 rounded-full ${isRtl ? "bg-[#C5A059]" : "bg-teal-500"} pulse-dot flex-shrink-0`} />
+              <span className={`w-2 h-2 rounded-full ${isRtl ? "bg-teal-500" : "bg-teal-500"} pulse-dot flex-shrink-0`} />
               <span className={`text-[10px] sm:text-[11px] font-bold ${badgeText} whitespace-nowrap`}>
                 {t("hero.badge")}
               </span>
@@ -210,7 +210,7 @@ export default function Hero() {
               {t("hero.subtitle")}
             </p>
 
-            {/* CTAs — Outline gold button for RTL */}
+            {/* CTAs — Teal filled button for RTL */}
             <div
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-12"
               data-hero-anim="1s"
@@ -220,7 +220,7 @@ export default function Hero() {
                   onClick={() => scrollToElement("#booking")}
                   className={`btn-cta inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] shadow-xl w-full sm:w-auto justify-center ${
                     isRtl
-                      ? "border-2 border-[#C5A059] bg-transparent text-[#C5A059] hover:bg-[#C5A059] hover:text-white hover:shadow-[#C5A059]/30"
+                      ? "bg-gradient-to-r from-teal-600 to-emerald-600 text-white hover:from-teal-700 hover:to-emerald-700 shadow-teal-500/25 hover:shadow-teal-500/40"
                       : "text-gray-900 shadow-amber-500/25"
                   }`}
                 >
@@ -274,7 +274,7 @@ export default function Hero() {
           {/* Right: Hero Image with Badges */}
           <div className="relative hidden lg:block" data-parallax="0.03">
             <div className="relative">
-              <div className={`rounded-[2rem] overflow-hidden shadow-2xl ${isRtl ? "shadow-[#C5A059]/15" : "shadow-black/30"}`}>
+              <div className={`rounded-[2rem] overflow-hidden shadow-2xl ${isRtl ? "shadow-teal-900/10" : "shadow-black/30"}`}>
                 <img
                   src="/images/hero-dental.png"
                   alt={t("hero.img_alt")}
@@ -283,7 +283,7 @@ export default function Hero() {
                 <div
                   className={`absolute inset-0 ${
                     isRtl
-                      ? "bg-gradient-to-t from-[#C5A059]/15 via-transparent to-transparent"
+                      ? "bg-gradient-to-t from-teal-900/20 via-transparent to-transparent"
                       : "bg-gradient-to-t from-[#042f2e]/60 via-transparent to-transparent"
                   }`}
                 />
@@ -345,7 +345,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Decorative Circle — gold for RTL */}
+              {/* Decorative Circle — teal for RTL */}
               <div className={`absolute -z-10 -top-12 -end-12 w-48 h-48 rounded-full border ${decorBorderColor}`} />
             </div>
           </div>

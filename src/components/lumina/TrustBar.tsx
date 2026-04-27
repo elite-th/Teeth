@@ -13,6 +13,11 @@ export default function TrustBar() {
     ? "linear-gradient(to right, #FAF9F6, transparent)"
     : "linear-gradient(to left, #FAF9F6, transparent)";
 
+  /* Trustbar heading: disable uppercase tracking for RTL */
+  const headingClass = dir === "rtl"
+    ? "text-center text-[11px] font-semibold text-stone-300 normal-case"
+    : "text-center text-[11px] font-semibold text-stone-300 uppercase tracking-[0.2em]";
+
   const brands = [
     t("trustbar.brand_1"),
     t("trustbar.brand_2"),
@@ -28,7 +33,7 @@ export default function TrustBar() {
       style={{ background: "#FAF9F6" }}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 mb-4">
-        <p className="text-center text-[11px] font-semibold text-stone-300 uppercase tracking-[0.2em]">
+        <p className={headingClass}>
           {t("trustbar.heading")}
         </p>
       </div>
