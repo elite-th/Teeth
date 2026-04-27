@@ -155,7 +155,7 @@ export default function About() {
                   onClick={() => scrollToElement("#booking")}
                   className={`btn-cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-[13px] shadow-lg ${
                     isRtl
-                      ? "text-white bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 shadow-teal-500/20 rounded-2xl py-4 text-[14px]"
+                      ? "border-2 border-[#C5A059] bg-transparent text-[#C5A059] hover:bg-[#C5A059] hover:text-white shadow-[#C5A059]/15 hover:shadow-[#C5A059]/30 rounded-2xl py-4 text-[14px]"
                       : "text-gray-900 shadow-amber-500/20"
                   }`}
                 >

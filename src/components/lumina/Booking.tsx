@@ -262,13 +262,13 @@ export default function Booking() {
       ? "w-16 sm:w-24 h-[2px] bg-rose-500 mx-2 transition-colors duration-500"
       : "w-16 sm:w-24 h-[2px] bg-rose-200 mx-2 transition-colors duration-500";
 
-  /* RTL-aware CTA button classes — teal for medical trust */
+  /* RTL-aware CTA button classes — luxury gold outline */
   const ctaBtnClass = isRtl
-    ? "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-white font-bold text-[14px] shadow-lg bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 shadow-teal-500/20"
+    ? "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl border-2 border-[#C5A059] bg-transparent text-[#C5A059] hover:bg-[#C5A059] hover:text-white font-bold text-[14px] shadow-lg shadow-[#C5A059]/15 hover:shadow-[#C5A059]/30"
     : "btn-cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-gray-900 font-bold text-[13px] shadow-lg shadow-amber-500/20";
 
   const ctaBtnLargeClass = isRtl
-    ? "btn-cta inline-flex items-center gap-2.5 px-10 py-4.5 rounded-2xl text-white font-bold text-[15px] shadow-xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 shadow-teal-500/25 disabled:opacity-70"
+    ? "btn-cta inline-flex items-center gap-2.5 px-10 py-4.5 rounded-2xl border-2 border-[#C5A059] bg-transparent text-[#C5A059] hover:bg-[#C5A059] hover:text-white font-bold text-[15px] shadow-xl shadow-[#C5A059]/20 hover:shadow-[#C5A059]/35 disabled:opacity-70"
     : "btn-cta inline-flex items-center gap-2.5 px-10 py-4 rounded-xl text-gray-900 font-bold text-[15px] shadow-xl shadow-amber-500/25 disabled:opacity-70";
 
   /* ================================================================ */
