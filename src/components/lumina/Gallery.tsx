@@ -14,9 +14,10 @@ interface BeforeAfterSliderProps {
   sublabel: string;
   beforeLabel: string;
   afterLabel: string;
+  isRtl?: boolean;
 }
 
-function BeforeAfterSlider({ afterSrc, beforeSrc, label, sublabel, beforeLabel, afterLabel }: BeforeAfterSliderProps) {
+function BeforeAfterSlider({ afterSrc, beforeSrc, label, sublabel, beforeLabel, afterLabel, isRtl }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(50);
   const dragging = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -63,10 +64,10 @@ function BeforeAfterSlider({ afterSrc, beforeSrc, label, sublabel, beforeLabel, 
         alt={beforeLabel}
         draggable={false}
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+        style={{ clipPath: isRtl ? `inset(0 0 0 ${100 - position}%)` : `inset(0 ${100 - position}% 0 0)` }}
       />
 
-      {/* Slider line */}
+      {/* Slider line — uses `left` because position is calculated from rect.left (viewport-relative) */}
       <div className="ba-slider-line" style={{ left: `${position}%` }} />
       {/* Slider handle */}
       <div className="ba-slider-handle" style={{ left: `${position}%` }}>
@@ -75,8 +76,8 @@ function BeforeAfterSlider({ afterSrc, beforeSrc, label, sublabel, beforeLabel, 
       </div>
 
       {/* Labels */}
-      <div className="ba-label left-3 bg-black/60 text-white">{beforeLabel}</div>
-      <div className="ba-label right-3 bg-indigo-500/80 text-white">{afterLabel}</div>
+      <div className="ba-label ba-label-start bg-black/60 text-white">{beforeLabel}</div>
+      <div className="ba-label ba-label-end bg-indigo-500/80 text-white">{afterLabel}</div>
 
       {/* Bottom gradient overlay with info */}
       <div className="absolute bottom-0 start-0 end-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-12 z-[3]">
@@ -161,6 +162,7 @@ export default function Gallery() {
                 sublabel={item.sublabel}
                 beforeLabel={t("gallery.before")}
                 afterLabel={t("gallery.after")}
+                isRtl={isRtl}
               />
             </div>
           ))}

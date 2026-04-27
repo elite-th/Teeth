@@ -611,7 +611,7 @@ export default function Booking() {
                         <span className="text-[13px] text-rose-400">
                           {t("booking.summary_phone")}
                         </span>
-                        <span className="text-[13px] font-semibold text-rose-900">
+                        <span className="text-[13px] font-semibold text-rose-900" dir="ltr">
                           {phone}
                         </span>
                       </div>

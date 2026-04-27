@@ -305,10 +305,12 @@
   min-inline-size: max-content;
 }
 
-/* Time slot: wider padding for RTL numerals */
+/* Time slot: wider padding for RTL numerals + tabular-nums globally */
+.time-slot {
+  font-variant-numeric: tabular-nums;
+}
 :root[dir="rtl"] .time-slot {
   padding-inline: 10px;
-  font-variant-numeric: tabular-nums;
 }
 
 /* BA slider labels: disable uppercase/spacing for RTL cursive */
@@ -319,7 +321,33 @@
 
 /* Fix CTA hover background-position for RTL */
 :root[dir="rtl"] .btn-cta:hover {
-  background-position: left center;
+  background-position: inline-start center;
+}
+
+/* ================================================================== */
+/*  Date Input & Select RTL Support                                    */
+/* ================================================================== */
+input[type="date"],
+select.form-input {
+  text-align: start;
+}
+/* Ensure native calendar picker icon stays accessible in RTL */
+:root[dir="rtl"] input[type="date"]::-webkit-calendar-picker-indicator {
+  margin-inline-start: 0;
+  margin-inline-end: 4px;
+}
+/* RTL select dropdown arrow positioning */
+:root[dir="rtl"] select.form-input {
+  background-position: left 12px center;
+}
+/* RTL date input: ensure value text aligns start */
+:root[dir="rtl"] input[type="date"]::-webkit-date-and-time-value {
+  text-align: start;
+}
+
+/* Form Input RTL text alignment — already covered above */
+:root[dir="rtl"] .form-input {
+  text-align: start;
 }
 
 /* ================================================================== */
@@ -522,8 +550,8 @@
   transform: translateX(-50%);
 }
 
-/* Scroll progress bar: logical start */
-:root[dir="rtl"] .scroll-progress {
+/* Scroll progress bar: logical start (applies to both LTR and RTL) */
+.scroll-progress {
   inset-inline-start: 0;
 }
 
@@ -578,7 +606,7 @@ html {
 /*  Scroll Progress                                                    */
 /* ================================================================== */
 .scroll-progress {
-  position: fixed; top: 0; left: 0; height: 3px;
+  position: fixed; top: 0; inset-inline-start: 0; height: 3px;
   background: linear-gradient(90deg, #2dd4bf, #f59e0b, #ec4899, #8b5cf6);
   z-index: 100; will-change: width;
 }
@@ -715,6 +743,13 @@ html {
   font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; z-index: 5;
   backdrop-filter: blur(8px);
 }
+/* BA slider labels: use logical start/end for RTL */
+.ba-label.ba-label-start {
+  inset-inline-start: 12px;
+}
+.ba-label.ba-label-end {
+  inset-inline-end: 12px;
+}
 
 /* ================================================================== */
 /*  Testimonial Glass                                                  */
@@ -812,7 +847,7 @@ html {
 /* ================================================================== */
 .nav-link { position: relative; }
 .nav-link::after {
-  content:''; position:absolute; bottom:-4px; left:50%; width:0; height:2px;
+  content:''; position:absolute; bottom:-4px; inset-inline-start:50%; width:0; height:2px;
   background:linear-gradient(90deg,#2dd4bf,#f59e0b);
   transition:all .35s cubic-bezier(.22,1,.36,1); transform:translateX(-50%); border-radius:99px;
 }
@@ -933,4 +968,14 @@ html[dir="rtl"] .header-glass {
 /* ================================================================== */
 .mobile-sticky-cta.show {
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ================================================================== */
+/*  RTL Phone Number Display                                           */
+/* ================================================================== */
+/* Phone numbers should always render LTR even in RTL context */
+.phone-ltr {
+  direction: ltr;
+  unicode-bidi: embed;
+  text-align: start;
 }
