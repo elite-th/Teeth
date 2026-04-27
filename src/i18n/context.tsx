@@ -36,14 +36,14 @@ const I18nContext = createContext<I18nContextValue | null>(null);
 /* ------------------------------------------------------------------ */
 /*  Helper: resolve nested key like "hero.badge"                      */
 /* ------------------------------------------------------------------ */
-function getNestedValue(obj: Record<string, unknown>, keyPath: string): string {
+function getNestedValue(obj: Record<string, unknown>, keyPath: string): string | null {
   const keys = keyPath.split(".");
   let current: unknown = obj;
   for (const k of keys) {
-    if (current == null || typeof current !== "object") return keyPath;
+    if (current == null || typeof current !== "object") return null;
     current = (current as Record<string, unknown>)[k];
   }
-  return typeof current === "string" ? current : keyPath;
+  return typeof current === "string" ? current : null;
 }
 
 /* ------------------------------------------------------------------ */
@@ -138,7 +138,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   const t = useCallback(
     (key: string): string => {
-      return getNestedValue(messages[locale] as unknown as Record<string, unknown>, key) || key;
+      return getNestedValue(messages[locale] as unknown as Record<string, unknown>, key) ?? key;
     },
     [locale],
   );
