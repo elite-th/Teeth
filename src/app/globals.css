@@ -237,14 +237,14 @@
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
 }
-/* RTL: solid charcoal — Farsi text doesn't use gradient */
+/* RTL: heading_l2 gets direct gold color — no gradient (avoids bg-clip bugs) */
 :root[dir="rtl"] .hero-heading-gold-end {
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
   -webkit-text-fill-color: unset !important;
-  color: #1E1E1E !important;
+  color: #C5A059 !important;
   display: inline !important;
 }
 /* Gold underline accent bar below heading */
