@@ -23,7 +23,7 @@ function StatCounter({
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const { t } = useI18n();
+  const { t, dir } = useI18n();
 
   /* ── Parallax on hero image ── */
   useEffect(() => {
@@ -64,122 +64,81 @@ export default function Hero() {
     });
   }, []);
 
+  const isRtl = dir === "rtl";
+
   return (
     <section
       id="hero"
       ref={heroRef}
       className="relative min-h-screen flex items-center pt-20 lg:pt-24 overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #FAFAF7 0%, #F5F0E8 30%, #FFFDF8 60%, #FAFAF7 100%)" }}
+      /* ══════ RULE 1: Clean warm white #FAFAF7 — NO dark blocks ══════ */
+      style={{ background: "#FAFAF7" }}
     >
-      {/* Mesh Blobs — golden tones for all languages */}
+      {/* Only the tiniest ambient gold glow for studio-light warmth */}
       <div
-        className="hero-mesh-blob"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          width: 600,
-          height: 600,
-          background: "#C5A059",
-          top: "-15%",
-          insetInlineEnd: "-5%",
-          opacity: 0.08,
-        }}
-      />
-      <div
-        className="hero-mesh-blob"
-        style={{
-          width: 500,
-          height: 500,
-          background: "#E8BD3E",
-          bottom: "-10%",
-          insetInlineStart: "-5%",
-          animationDelay: "-5s",
-          opacity: 0.06,
-        }}
-      />
-      <div
-        className="hero-mesh-blob"
-        style={{
-          width: 350,
-          height: 350,
-          background: "#D4B06A",
-          top: "40%",
-          insetInlineStart: "30%",
-          animationDelay: "-9s",
-          opacity: 0.05,
-        }}
-      />
-
-      {/* Golden Gradient Overlay — breaks flatness */}
-      <div
-        className="absolute inset-0 z-[1] bg-gradient-to-b from-[#C5A059]/[0.05] via-transparent to-[#FAFAF7]/70"
-      />
-
-      {/* Dot Pattern — subtle gold for all languages */}
-      <div
-        className="absolute inset-0 z-[1]"
-        style={{
-          opacity: 0.02,
-          backgroundImage: "radial-gradient(circle,#C5A059 1px,transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-
-      {/* Ambient Gold Glow — professional studio lighting feel */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background: "radial-gradient(circle at 75% 25%, rgba(197,160,89,0.10) 0%, transparent 55%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 40% 50% at 15% 75%, rgba(197,160,89,0.06) 0%, transparent 60%)",
+          background: isRtl
+            ? "radial-gradient(circle at 30% 30%, rgba(197,160,89,0.035) 0%, transparent 50%)"
+            : "radial-gradient(circle at 70% 30%, rgba(197,160,89,0.035) 0%, transparent 50%)",
         }}
       />
 
       <div className="relative z-[2] max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-8 lg:py-6 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left Content */}
+
+          {/* ═══════════════════════════════════════════════
+              TEXT COLUMN — RTL: right side, LTR: left side
+              ═══════════════════════════════════════════════ */}
           <div className="text-center lg:text-start">
+
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#C5A059]/10 border-[#C5A059]/25 shadow-sm mb-6 sm:mb-8 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full border shadow-sm mb-6 sm:mb-8 backdrop-blur-sm"
+              style={{
+                background: "rgba(197,160,89,0.08)",
+                borderColor: "rgba(197,160,89,0.20)",
+              }}
               data-hero-anim=".1s"
             >
               <span className="w-2 h-2 rounded-full bg-[#C5A059] pulse-dot flex-shrink-0" />
-              <span className="text-[10px] sm:text-[11px] font-bold text-[#1E1E1E]/55 whitespace-nowrap">
+              <span
+                className="text-[10px] sm:text-[11px] font-bold whitespace-nowrap"
+                style={{ color: "rgba(30,30,30,0.55)" }}
+              >
                 {t("hero.badge")}
               </span>
             </div>
 
-            {/* Heading — universal gradient from dark gold to charcoal */}
+            {/* ═══════════════════════════════════════════════
+                RULE 3: Heading — charcoal #1E1E1E
+                with subtle gold gradient at the end of words
+                ═══════════════════════════════════════════════ */}
             <h1
-              className="font-display text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight mb-6 hero-heading-rtl bg-gradient-to-r from-[#8B7355] to-[#1E1E1E] bg-clip-text text-transparent"
+              className="hero-heading-luxury font-display text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight mb-6"
               data-hero-anim=".3s"
             >
-              {t("hero.heading_l1")}
+              <span className="hero-heading-solid">{t("hero.heading_l1")}</span>
               <br />
-              {t("hero.heading_l2")}{" "}
-              <span>
-                {t("hero.heading_l3")}
-              </span>
+              <span className="hero-heading-gold-end">{t("hero.heading_l2")}</span>
+              {t("hero.heading_l3") ? (
+                <span className="hero-heading-gold-end">{" "}{t("hero.heading_l3")}</span>
+              ) : null}
               {t("hero.heading_l4") ? (
-                <>
-                  {" "}
-                  {t("hero.heading_l4")}
-                </>
+                <span className="hero-heading-gold-end">{" "}{t("hero.heading_l4")}</span>
               ) : null}
             </h1>
 
-            {/* Subtitle */}
+            {/* Subtitle — dark grey #555555 */}
             <p
-              className="text-lg sm:text-xl text-[#1E1E1E]/55 leading-[1.8] max-w-lg mx-auto lg:mx-0 mb-10"
+              className="text-lg sm:text-xl leading-[1.8] max-w-lg mx-auto lg:mx-0 mb-10"
+              style={{ color: "#555555" }}
               data-hero-anim=".8s"
             >
               {t("hero.subtitle")}
             </p>
 
-            {/* CTAs — SOLID gold button */}
+            {/* CTA — Solid gold button */}
             <div
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-12"
               data-hero-anim="1s"
@@ -187,7 +146,12 @@ export default function Hero() {
               <MagneticWrap>
                 <button
                   onClick={() => scrollToElement("#booking")}
-                  className="btn-cta inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] shadow-xl w-full sm:w-auto justify-center bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55"
+                  className="btn-cta inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] w-full sm:w-auto justify-center"
+                  style={{
+                    background: "#C5A059",
+                    color: "#1E1E1E",
+                    boxShadow: "0 4px 15px rgba(197,160,89,0.4)",
+                  }}
                 >
                   <CalendarCheck className="w-4 h-4" />
                   {t("hero.cta_book")}
@@ -195,85 +159,122 @@ export default function Hero() {
               </MagneticWrap>
               <button
                 onClick={() => scrollToElement("#services")}
-                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl text-[#1E1E1E]/50 hover:bg-[#1E1E1E]/5 font-medium text-[15px] transition-all w-full sm:w-auto justify-center group"
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl font-medium text-[15px] transition-all w-full sm:w-auto justify-center group hover:bg-[#1E1E1E]/5"
+                style={{ color: "rgba(30,30,30,0.50)" }}
               >
                 {t("hero.cta_explore")}{" "}
                 <ChevronDown className="w-3 h-3 group-hover:translate-y-1 transition-transform rtl:rotate-180" />
               </button>
             </div>
 
-            {/* Stats — GOLD numbers in glassmorphism containers */}
+            {/* ═══════════════════════════════════════════════
+                RULE 4: Glassmorphism stat boxes
+                bg: rgba(255,255,255,0.7)
+                border: 1px solid rgba(197,160,89,0.3)
+                shadow: 0 8px 32px rgba(0,0,0,0.08)
+                backdrop-filter: blur(10px)
+                Numbers: gold #C5A059 bold
+                ═══════════════════════════════════════════════ */}
             <div
               className="flex items-center gap-4 sm:gap-5 justify-center lg:justify-start"
               data-hero-anim="1.2s"
             >
-              <div className="text-center lg:text-start hero-stat-glass">
+              <div
+                className="text-center lg:text-start hero-stat-float"
+              >
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={15} />+
                 </div>
-                <div className="text-[11px] text-[#1E1E1E]/40 font-medium mt-0.5">
+                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.40)" }}>
                   {t("hero.stat_years")}
                 </div>
               </div>
-              <div className="w-px h-10 bg-gradient-to-b from-transparent via-[#C5A059]/20 to-transparent" />
-              <div className="text-center lg:text-start hero-stat-glass">
+              <div
+                className="w-px h-10"
+                style={{ background: "linear-gradient(to bottom, transparent, rgba(197,160,89,0.20), transparent)" }}
+              />
+              <div className="text-center lg:text-start hero-stat-float">
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={4.9} isDecimal />
                 </div>
-                <div className="text-[11px] text-[#1E1E1E]/40 font-medium mt-0.5">
+                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.40)" }}>
                   {t("hero.stat_rating")}
                 </div>
               </div>
-              <div className="w-px h-10 bg-gradient-to-b from-transparent via-[#C5A059]/20 to-transparent" />
-              <div className="text-center lg:text-start hero-stat-glass">
+              <div
+                className="w-px h-10"
+                style={{ background: "linear-gradient(to bottom, transparent, rgba(197,160,89,0.20), transparent)" }}
+              />
+              <div className="text-center lg:text-start hero-stat-float">
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={8} />K+
                 </div>
-                <div className="text-[11px] text-[#1E1E1E]/40 font-medium mt-0.5">
+                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.40)" }}>
                   {t("hero.stat_patients")}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right: Hero Image with Badges */}
+          {/* ═══════════════════════════════════════════════
+              RULE 2: Soft Mask — image edge fades into white bg
+              LTR: right edge fades → text on right
+              RTL: left edge fades → text on left
+              ═══════════════════════════════════════════════ */}
           <div className="relative hidden lg:block" data-parallax="0.03">
             <div className="relative">
-              {/* Golden soft shadow behind image */}
-              <div className="rounded-[2rem] overflow-hidden shadow-2xl shadow-[#C5A059]/20">
+              {/* Doctor image with soft-edge fade mask */}
+              <div className="hero-img-mask rounded-[2rem] overflow-hidden">
                 <img
                   src="/images/hero-dental.png"
                   alt={t("hero.img_alt")}
                   className="w-full h-[560px] object-cover"
                 />
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-[#C5A059]/15 via-transparent to-transparent"
-                />
               </div>
 
-              {/* Floating Badge: 100% Safe — glassmorphism */}
+              {/* Floating Badge: 100% Safe — clean glassmorphism */}
               <div
-                className="absolute -top-5 -end-5 bg-white/60 backdrop-blur-[10px] border-[#C5A059]/30 shadow-lg shadow-[#C5A059]/8 rounded-2xl shadow-xl p-4"
+                className="absolute -top-5 -end-5 rounded-2xl shadow-xl p-4"
+                style={{
+                  background: "rgba(255,255,255,0.7)",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  border: "1px solid rgba(197,160,89,0.3)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+                }}
                 data-hero-anim="1.4s"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#C5A059] to-[#B08D3E] flex items-center justify-center shadow-lg shadow-[#C5A059]/20">
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center shadow-lg"
+                    style={{
+                      background: "linear-gradient(to bottom right, #C5A059, #B08D3E)",
+                      boxShadow: "0 4px 16px rgba(197,160,89,0.25)",
+                    }}
+                  >
                     <Shield className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <div className="text-sm font-bold text-[#1E1E1E]">
                       {t("hero.badge_safe")}
                     </div>
-                    <div className="text-[11px] text-[#1E1E1E]/40">
+                    <div className="text-[11px]" style={{ color: "rgba(30,30,30,0.40)" }}>
                       {t("hero.badge_safe_sub")}
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Badge: Trusted — glassmorphism */}
+              {/* Floating Badge: Trusted — clean glassmorphism */}
               <div
-                className="absolute -bottom-5 -start-5 bg-white/60 backdrop-blur-[10px] border-[#C5A059]/30 shadow-lg shadow-[#C5A059]/8 rounded-2xl shadow-xl p-4"
+                className="absolute -bottom-5 -start-5 rounded-2xl shadow-xl p-4"
+                style={{
+                  background: "rgba(255,255,255,0.7)",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  border: "1px solid rgba(197,160,89,0.3)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+                }}
                 data-hero-anim="1.6s"
               >
                 <div className="flex items-center gap-3">
@@ -296,19 +297,30 @@ export default function Hero() {
                       className="w-9 h-9 rounded-full border-2 object-cover"
                       style={{ borderColor: "#C5A059" }}
                     />
-                    <div className="w-9 h-9 rounded-full border-2 bg-[#C5A059]/10 text-[#C5A059] flex items-center justify-center text-[10px] font-bold" style={{ borderColor: "#C5A059" }}>
+                    <div
+                      className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-[10px] font-bold"
+                      style={{
+                        borderColor: "#C5A059",
+                        background: "rgba(197,160,89,0.10)",
+                        color: "#C5A059",
+                      }}
+                    >
                       +8K
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-[#1E1E1E]">{t("hero.badge_trusted")}</div>
-                    <div className="text-[11px] text-[#1E1E1E]/40">{t("hero.badge_trusted_sub")}</div>
+                    <div className="text-sm font-bold text-[#1E1E1E]">
+                      {t("hero.badge_trusted")}
+                    </div>
+                    <div className="text-[11px]" style={{ color: "rgba(30,30,30,0.40)" }}>
+                      {t("hero.badge_trusted_sub")}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Decorative Circle — gold for all */}
-              <div className="absolute -z-10 -top-12 -end-12 w-48 h-48 rounded-full border border-[#C5A059]/20" />
+              {/* Decorative Circle — subtle gold ring */}
+              <div className="absolute -z-10 -top-12 -end-12 w-48 h-48 rounded-full border border-[#C5A059]/15" />
             </div>
           </div>
         </div>

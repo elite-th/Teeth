@@ -198,62 +198,33 @@
   color: #D4AF37 !important;
 }
 
-/* Hero section: warm white background — NEVER #FFFFFF */
+/* ================================================================== */
+/*  RULE 1: Hero — Clean warm white #FAFAF7, NO dark blocks          */
+/*  White & Gold harmony for luxury dental clinic                    */
+/* ================================================================== */
+
 #hero {
-  background: linear-gradient(160deg, #FAFAF7 0%, #F5F0E8 30%, #FFFDF8 60%, #FAFAF7 100%) !important;
+  background: #FAFAF7 !important;
 }
 
-/* Hero mesh blobs: golden tones */
-.hero-mesh-blob {
-  opacity: 0.07 !important;
-}
-
-/* Hero gradient overlay: golden tint for depth */
-#hero .bg-gradient-to-b {
-  background: linear-gradient(to bottom, rgba(197,160,89,0.05), rgba(250,250,247,0.4)) !important;
-}
-
-/* Hero title: luxury gradient from charcoal to dark gold */
-#hero h1 {
-  background: linear-gradient(to right, #8B7355, #1E1E1E) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-:root[dir="rtl"] #hero h1 {
-  background: linear-gradient(to left, #8B7355, #1E1E1E) !important;
-}
-#hero .text-teal-200\/60,
-#hero p.text-teal-200\/60 {
-  color: rgba(30, 30, 30, 0.55) !important;
-}
-#hero .text-teal-300\/50 {
-  color: rgba(30, 30, 30, 0.40) !important;
-}
-/* Smart gold: .text-teal-200/300 NOT gold — only CTA, stats, ambient glow get gold */
-#hero .text-teal-200 {
-  color: rgba(30, 30, 30, 0.55) !important;
-}
-#hero .text-teal-300 {
-  color: rgba(30, 30, 30, 0.55) !important;
-}
-#hero .bg-white\/10 {
-  background: rgba(197, 160, 89, 0.08) !important;
-  border-color: rgba(197, 160, 89, 0.20) !important;
-}
-#hero .bg-gradient-to-r.from-teal-300 {
-  background: linear-gradient(to right, #C5A059, #D4B06A, #B08D3E) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-/* Hero heading: gold sideline accent — luxury vertical bar */
-.hero-heading-rtl {
+/* ── RULE 3: Heading — charcoal #1E1E1E with subtle gold gradient ── */
+.hero-heading-luxury {
+  color: #1E1E1E !important;
   position: relative;
   display: inline-block;
 }
-.hero-heading-rtl::after {
+/* Gold gradient at the end of heading words */
+.hero-heading-gold-end {
+  background: linear-gradient(to right, #1E1E1E, #8B7355) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+:root[dir="rtl"] .hero-heading-gold-end {
+  background: linear-gradient(to left, #1E1E1E, #8B7355) !important;
+}
+/* Gold underline accent bar */
+.hero-heading-luxury::after {
   content: '';
   position: absolute;
   bottom: -6px;
@@ -263,54 +234,27 @@
   background: linear-gradient(to right, #C5A059, transparent);
   border-radius: 99px;
 }
-:root[dir="rtl"] .hero-heading-rtl::after {
+:root[dir="rtl"] .hero-heading-luxury::after {
   background: linear-gradient(to left, #C5A059, transparent);
 }
 
-/* Hero floating badges: glassmorphism frosted glass */
-#hero .backdrop-blur-\[10px\] {
-  background: rgba(255, 255, 255, 0.60) !important;
-  border-color: rgba(197, 160, 89, 0.30) !important;
-  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08) !important;
-  backdrop-filter: blur(10px) !important;
-}
-/* Legacy selector kept for safety */
-#hero .backdrop-blur-xl {
-  background: rgba(255, 255, 255, 0.60) !important;
-  border-color: rgba(197, 160, 89, 0.30) !important;
-  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08) !important;
-}
-#hero .backdrop-blur-xl .text-white {
-  color: #1E1E1E !important;
-}
-#hero .backdrop-blur-xl .text-white\/50 {
-  color: rgba(30, 30, 30, 0.40) !important;
-}
-#hero .backdrop-blur-xl .bg-teal-400\/20 {
-  background: rgba(197, 160, 89, 0.10) !important;
-  color: #C5A059 !important;
-}
-#hero .backdrop-blur-xl .border-\[\#134e4a\] {
-  border-color: rgba(197, 160, 89, 0.20) !important;
-}
-
-/* Hero stats: GOLD numbers (#C5A059) — smart gold, only stat values */
-#hero .stat-num {
-  color: #C5A059 !important;
-}
-
-/* Hero stats: glassmorphism containers — frosted gold glass */
-.hero-stat-glass {
-  background: rgba(255, 255, 255, 0.6) !important;
+/* ── RULE 4: Glassmorphism stat boxes — clean floating glass ── */
+.hero-stat-float {
+  background: rgba(255, 255, 255, 0.7) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: 1px solid rgba(197, 160, 89, 0.3) !important;
   border-radius: 1rem !important;
   padding: 0.875rem 1.25rem !important;
-  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
 }
 
-/* Hero CTA: solid premium gold — gold bg, dark text, soft glow */
+/* Hero stats: GOLD numbers (#C5A059) */
+#hero .stat-num {
+  color: #C5A059 !important;
+}
+
+/* Hero CTA: solid premium gold */
 #hero .btn-cta {
   background: #C5A059 !important;
   color: #1E1E1E !important;
@@ -325,33 +269,31 @@
   transform: translateY(-2px) !important;
 }
 
-/* Hero explore button: charcoal (smart gold — gold not allowed here) */
-#hero .text-teal-200\/70 {
-  color: rgba(30, 30, 30, 0.50) !important;
+/* ── RULE 2: Soft mask — image edge fades into white bg ── */
+.hero-img-mask {
+  position: relative;
+  box-shadow: 0 20px 60px rgba(197,160,89,0.12) !important;
 }
-#hero .hover\:bg-white\/5:hover {
-  background: rgba(30, 30, 30, 0.05) !important;
+/* LTR: right edge of image fades into #FAFAF7 */
+.hero-img-mask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 25%;
+  background: linear-gradient(to left, #FAFAF7, transparent);
+  pointer-events: none;
+  z-index: 2;
 }
-
-/* Hero image gradient overlay: golden tint */
-#hero .from-\[\#042f2e\]\/60 {
-  background: linear-gradient(to top, rgba(197, 160, 89, 0.15), transparent) !important;
-}
-
-/* Hero divider lines: golden */
-#hero .bg-gradient-to-b.from-transparent.via-teal-400\/30 {
-  background: linear-gradient(to bottom, transparent, rgba(197, 160, 89, 0.20), transparent) !important;
-}
-
-/* Dot pattern: very subtle gold */
-#hero .opacity-\[0\.03\] {
-  opacity: 0.02 !important;
+/* RTL: left edge of image fades into #FAFAF7 */
+:root[dir="rtl"] .hero-img-mask::after {
+  right: auto;
+  left: 0;
+  background: linear-gradient(to right, #FAFAF7, transparent);
 }
 
 /* Pulse dot: gold */
-#hero .bg-teal-300 {
-  background: #C5A059 !important;
-}
 #hero .pulse-dot::after {
   border-color: #C5A059 !important;
 }
