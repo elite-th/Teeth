@@ -199,21 +199,35 @@
 }
 
 /* ================================================================== */
-/*  RULE 1: Hero — Clean warm white #FAFAF7, NO dark blocks          */
-/*  White & Gold harmony for luxury dental clinic                    */
+/*  HERO SECTION — White & Gold Luxury (4 Art Director Rules)         */
+/*  Rule 1: Clean #FAFAF7 — NO dark blocks, NO heavy gradients       */
+/*  Rule 2: Soft mask — image fades into white                        */
+/*  Rule 3: Heading #1E1E1E + subtle gold gradient, Subtitle #555     */
+/*  Rule 4: Glassmorphism stats — clean floating glass                */
 /* ================================================================== */
 
+/* ═══ RULE 1: Background — pure warm white, nothing else ═══ */
 #hero {
   background: #FAFAF7 !important;
 }
+/* Kill ANY gradient or overlay that might darken the text side */
+#hero::before,
+#hero::after {
+  display: none !important;
+  content: none !important;
+}
 
-/* ── RULE 3: Heading — charcoal #1E1E1E with subtle gold gradient ── */
+/* ═══ RULE 3: Heading — solid charcoal + gold gradient at word ends ═══ */
 .hero-heading-luxury {
   color: #1E1E1E !important;
   position: relative;
   display: inline-block;
 }
-/* Gold gradient at the end of heading words */
+/* Line 1: solid charcoal */
+.hero-heading-solid {
+  color: #1E1E1E !important;
+}
+/* Lines 2+: charcoal → dark gold gradient */
 .hero-heading-gold-end {
   background: linear-gradient(to right, #1E1E1E, #8B7355) !important;
   -webkit-background-clip: text !important;
@@ -238,7 +252,7 @@
   background: linear-gradient(to left, #C5A059, transparent);
 }
 
-/* ── RULE 4: Glassmorphism stat boxes — clean floating glass ── */
+/* ═══ RULE 4: Glassmorphism stat boxes — clean floating glass ═══ */
 .hero-stat-float {
   background: rgba(255, 255, 255, 0.7) !important;
   backdrop-filter: blur(10px) !important;
@@ -269,7 +283,7 @@
   transform: translateY(-2px) !important;
 }
 
-/* ── RULE 2: Soft mask — image edge fades into white bg ── */
+/* ═══ RULE 2: Soft mask — image edge fades into white bg ═══ */
 .hero-img-mask {
   position: relative;
   box-shadow: 0 20px 60px rgba(197,160,89,0.12) !important;
@@ -281,7 +295,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: 25%;
+  width: 30%;
   background: linear-gradient(to left, #FAFAF7, transparent);
   pointer-events: none;
   z-index: 2;
@@ -298,7 +312,7 @@
   border-color: #C5A059 !important;
 }
 
-/* Hero badge uppercase tracking fix for RTL */
+/* Hero badge: disable uppercase letter-spacing for RTL cursive */
 :root[dir="rtl"] #hero .tracking-\[0\.1em\],
 :root[dir="rtl"] #hero .tracking-\[0\.12em\] {
   letter-spacing: 0 !important;
@@ -988,18 +1002,7 @@ html {
 .stagger.visible > *:nth-child(7) { opacity:1; transform:none; transition-delay:.42s; }
 .stagger.visible > *:nth-child(8) { opacity:1; transform:none; transition-delay:.49s; }
 
-/* ================================================================== */
-/*  Hero Mesh Blob                                                     */
-/* ================================================================== */
-.hero-mesh-blob {
-  position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.2;
-  animation: meshFloat 14s ease-in-out infinite;
-}
-@keyframes meshFloat {
-  0%,100% { transform: translate(0,0) scale(1); }
-  33% { transform: translate(30px,-20px) scale(1.05); }
-  66% { transform: translate(-20px,30px) scale(.95); }
-}
+/* Hero Mesh Blob — removed (no longer used, was causing dark artifacts) */
 
 /* ================================================================== */
 /*  CTA Button                                                         */
