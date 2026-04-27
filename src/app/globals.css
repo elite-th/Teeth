@@ -221,7 +221,7 @@
   -webkit-text-fill-color: transparent !important;
 }
 :root[dir="rtl"] #hero h1 {
-  background: linear-gradient(to left, #1E1E1E, #8B7355) !important;
+  background: linear-gradient(to left, #8B7355, #1E1E1E) !important;
 }
 #hero .text-teal-200\/60,
 #hero p.text-teal-200\/60 {
@@ -262,6 +262,9 @@
   height: 3px;
   background: linear-gradient(to right, #C5A059, transparent);
   border-radius: 99px;
+}
+:root[dir="rtl"] .hero-heading-rtl::after {
+  background: linear-gradient(to left, #C5A059, transparent);
 }
 
 /* Hero floating badges: glassmorphism frosted glass */

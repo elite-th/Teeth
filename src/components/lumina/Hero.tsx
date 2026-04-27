@@ -162,8 +162,13 @@ export default function Hero() {
               {t("hero.heading_l2")}{" "}
               <span>
                 {t("hero.heading_l3")}
-              </span>{" "}
-              {t("hero.heading_l4")}
+              </span>
+              {t("hero.heading_l4") ? (
+                <>
+                  {" "}
+                  {t("hero.heading_l4")}
+                </>
+              ) : null}
             </h1>
 
             {/* Subtitle */}
