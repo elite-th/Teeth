@@ -236,11 +236,15 @@
   -webkit-text-fill-color: transparent !important;
   color: transparent !important; /* Fallback for non-webkit browsers */
 }
+/* RTL: remove gradient — Farsi text uses solid charcoal */
 :root[dir="rtl"] .hero-heading-gold-end {
-  background-image: linear-gradient(to left, #1E1E1E, #8B7355) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  color: #1E1E1E !important;
+  display: inline !important;
 }
 /* Gold underline accent bar */
 .hero-heading-luxury::after {
