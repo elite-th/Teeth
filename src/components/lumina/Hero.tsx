@@ -64,8 +64,6 @@ export default function Hero() {
     });
   }, []);
 
-  const isRtl = dir === "rtl";
-
   return (
     <section
       id="hero"
@@ -79,7 +77,7 @@ export default function Hero() {
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          background: isRtl
+          background: dir === "rtl"
             /* RTL: spotlight from left (image side) + secondary warm fill */
             ? "radial-gradient(ellipse 70% 60% at 30% 40%, rgba(197,160,89,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 70% 80%, rgba(197,160,89,0.04) 0%, transparent 60%)"
             /* LTR: spotlight from right (image side) + secondary warm fill */
@@ -107,7 +105,7 @@ export default function Hero() {
               <span className="w-2 h-2 rounded-full bg-[#C5A059] pulse-dot flex-shrink-0" />
               <span
                 className="text-[10px] sm:text-[11px] font-bold whitespace-nowrap"
-                style={{ color: "rgba(30,30,30,0.55)" }}
+                style={{ color: "rgba(30,30,30,0.70)" }}
               >
                 {t("hero.badge")}
               </span>
@@ -123,12 +121,8 @@ export default function Hero() {
               <span className="hero-heading-solid">{t("hero.heading_l1")}</span>
               <br />
               <span className="hero-heading-gold-end">{t("hero.heading_l2")}</span>
-              {t("hero.heading_l3") ? (
-                <span className="hero-heading-gold-end">{" "}{t("hero.heading_l3")}</span>
-              ) : null}
-              {t("hero.heading_l4") ? (
-                <span className="hero-heading-gold-end">{" "}{t("hero.heading_l4")}</span>
-              ) : null}
+              {" "}{t("hero.heading_l3") && <><br /><span className="hero-heading-gold-end">{t("hero.heading_l3")}</span></>}
+              {" "}{t("hero.heading_l4") && <><br /><span className="hero-heading-gold-end">{t("hero.heading_l4")}</span></>}
             </h1>
 
             {/* Subtitle — medium grey for readability without competing with heading */}
@@ -159,7 +153,7 @@ export default function Hero() {
               <button
                 onClick={() => scrollToElement("#services")}
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl font-medium text-[15px] transition-all w-full sm:w-auto justify-center group hover:bg-[#1E1E1E]/5"
-                style={{ color: "rgba(30,30,30,0.50)" }}
+                style={{ color: "rgba(30,30,30,0.65)" }}
               >
                 {t("hero.cta_explore")}{" "}
                 <ChevronDown className="w-3 h-3 group-hover:translate-y-1 transition-transform rtl:rotate-180" />
@@ -177,7 +171,7 @@ export default function Hero() {
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={15} />+
                 </div>
-                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.40)" }}>
+                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.55)" }}>
                   {t("hero.stat_years")}
                 </div>
               </div>
@@ -189,7 +183,7 @@ export default function Hero() {
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={4.9} isDecimal />
                 </div>
-                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.40)" }}>
+                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.55)" }}>
                   {t("hero.stat_rating")}
                 </div>
               </div>
@@ -201,9 +195,20 @@ export default function Hero() {
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={8} />K+
                 </div>
-                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.40)" }}>
+                <div className="text-[11px] font-medium mt-0.5" style={{ color: "rgba(30,30,30,0.55)" }}>
                   {t("hero.stat_patients")}
                 </div>
+              </div>
+            </div>
+
+            {/* Mobile hero image — visible below sm breakpoint */}
+            <div className="block lg:hidden mb-8" data-hero-anim=".6s">
+              <div className="hero-img-mask rounded-[1.5rem] overflow-hidden">
+                <img
+                  src="/images/hero-dental.png"
+                  alt={t("hero.img_alt")}
+                  className="w-full h-[300px] sm:h-[360px] object-cover"
+                />
               </div>
             </div>
           </div>

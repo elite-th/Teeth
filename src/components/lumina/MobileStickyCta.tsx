@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CalendarCheck } from "lucide-react";
 import { scrollToElement } from "@/hooks/use-lumina";
 import { useI18n } from "@/i18n/context";
 
 export default function MobileStickyCta() {
   const [show, setShow] = useState(false);
+  const showRef = useRef(false);
   const { t } = useI18n();
 
   useEffect(() => {
@@ -17,9 +18,12 @@ export default function MobileStickyCta() {
       (entries) => {
         entries.forEach((entry) => {
           if (window.scrollY < 400) {
+            showRef.current = false;
             setShow(false);
           } else {
-            setShow(!entry.isIntersecting);
+            const next = !entry.isIntersecting;
+            showRef.current = next;
+            setShow(next);
           }
         });
       },
@@ -32,7 +36,10 @@ export default function MobileStickyCta() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        if (window.scrollY < 400 && show) setShow(false);
+        if (window.scrollY < 400 && showRef.current) {
+          showRef.current = false;
+          setShow(false);
+        }
         ticking = false;
       });
     };
@@ -42,7 +49,7 @@ export default function MobileStickyCta() {
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
     };
-  }, [show]);
+  }, []);
 
   return (
     <div

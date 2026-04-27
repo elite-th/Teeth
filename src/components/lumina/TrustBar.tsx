@@ -7,8 +7,12 @@ export default function TrustBar() {
   const isRtl = dir === "rtl";
 
   /* Logical gradient directions: fade from edges using warm white */
-  const startFade = "linear-gradient(to right, #FAFAF7, transparent)";
-  const endFade = "linear-gradient(to left, #FAFAF7, transparent)";
+  const startFade = isRtl
+    ? "linear-gradient(to left, #FAFAF7, transparent)"
+    : "linear-gradient(to right, #FAFAF7, transparent)";
+  const endFade = isRtl
+    ? "linear-gradient(to right, #FAFAF7, transparent)"
+    : "linear-gradient(to left, #FAFAF7, transparent)";
 
   /* Trustbar heading: disable uppercase tracking for RTL cursive text */
   const headingClass = isRtl

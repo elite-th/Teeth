@@ -1006,11 +1006,38 @@ html {
 }
 
 /* ================================================================== */
+/*  Focus-Visible — WCAG Keyboard Navigation                          */
+/* ================================================================== */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #D4AF37 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px;
+}
+.nav-link:focus-visible {
+  outline-offset: 4px;
+}
+.btn-cta:focus-visible,
+.hero-cta-3d:focus-visible {
+  outline: 2px solid #1E1E1E !important;
+  outline-offset: 3px;
+}
+.service-card:focus-visible,
+.time-slot:focus-visible {
+  outline: 2px solid #D4AF37 !important;
+  outline-offset: 2px;
+}
+.form-input:focus-visible {
+  outline: none;
+}
+
+/* ================================================================== */
 /*  Scroll Progress                                                    */
 /* ================================================================== */
 .scroll-progress {
   position: fixed; top: 0; inset-inline-start: 0; height: 3px;
-  background: linear-gradient(90deg, #2dd4bf, #f59e0b, #ec4899, #8b5cf6);
+  background: linear-gradient(90deg, #C5A059, #D4AF37, #B08D3E);
   z-index: 100; will-change: width;
 }
 
@@ -1093,8 +1120,8 @@ html {
   -webkit-mask-composite:xor; mask-composite:exclude;
   transition:background .5s; pointer-events:none;
 }
-.service-card:hover::before { background: linear-gradient(135deg, #6366f1, #a78bfa, #4f46e5); }
-.service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(79,70,229,0.12); }
+.service-card:hover::before { background: linear-gradient(135deg, #C5A059, #D4AF37, #B08D3E); }
+.service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(197,160,89,0.12); }
 .service-card:hover .svc-icon { transform: scale(1.1) rotate(-5deg); }
 .svc-icon { transition: all 0.5s cubic-bezier(0.22,1,0.36,1); }
 .service-card:hover .svc-arrow { transform: translateX(4px); opacity: 1; }
@@ -1106,7 +1133,7 @@ html {
 /*  Process Card                                                       */
 /* ================================================================== */
 .process-card { transition: all 0.5s cubic-bezier(0.22,1,0.36,1); }
-.process-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(159,18,57,0.15); }
+.process-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(197,160,89,0.15); }
 .process-card:hover .proc-num { transform: scale(1.15) rotate(6deg); }
 .proc-num { transition: all 0.5s cubic-bezier(0.22,1,0.36,1); }
 
@@ -1150,7 +1177,7 @@ html {
   background: rgba(255,255,255,0.06); backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.08); transition: all 0.4s;
 }
-.testi-glass:hover { background: rgba(255,255,255,0.1); border-color: rgba(110,231,183,0.2); }
+.testi-glass:hover { background: rgba(255,255,255,0.1); border-color: rgba(197,160,89,0.30); }
 
 /* ================================================================== */
 /*  Booking Card Animated Border                                       */
@@ -1158,7 +1185,7 @@ html {
 .booking-card { position: relative; border-radius: 1.5rem; overflow: hidden; }
 .booking-card::before {
   content:''; position:absolute; inset:-2px; z-index:-1; border-radius:1.6rem;
-  background:conic-gradient(from var(--border-angle,0deg), #f43f5e, #fb923c, #f43f5e);
+  background:conic-gradient(from var(--border-angle,0deg), #C5A059, #D4AF37, #B08D3E, #C5A059);
   animation: rotateBorder 4s linear infinite;
 }
 @property --border-angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }

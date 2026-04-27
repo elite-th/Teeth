@@ -35,9 +35,9 @@ export default function Footer() {
   ];
 
   const workingHours = [
-    { days: t("footer.day_mon_thu"), hours: "8:00 – 5:00" },
-    { days: t("footer.day_fri"), hours: "8:00 – 3:00" },
-    { days: t("footer.day_sat"), hours: "9:00 – 1:00" },
+    { days: t("footer.day_mon_thu"), hours: t("footer.hours_mon_thu") },
+    { days: t("footer.day_fri"), hours: t("footer.hours_fri") },
+    { days: t("footer.day_sat"), hours: t("footer.hours_sat") },
     { days: t("footer.day_sun"), hours: t("footer.hours_closed"), closed: true },
   ];
 
@@ -171,12 +171,12 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-14 pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/15 text-xs">
+          <p className="text-white/30 text-xs">
             {t("footer.copyright")}
           </p>
           <div className="flex items-center gap-6">
             {legalLinks.map((link) => (
-              <a key={link} href="#" className="text-white/15 text-xs hover:text-white/40 transition-colors">
+              <a key={link} href="#" className="text-white/30 text-xs hover:text-white/50 transition-colors">
                 {link}
               </a>
             ))}

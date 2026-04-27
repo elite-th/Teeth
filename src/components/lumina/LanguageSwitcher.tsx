@@ -52,7 +52,7 @@ export default function LanguageSwitcher() {
             setClosing(false);
           }
         }}
-        className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[13px] font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-100/80 transition-colors"
+        className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[13px] font-medium text-white/55 hover:text-[#D4AF37] hover:bg-[#C5A059]/10 transition-colors"
         aria-label={t("header.switch_lang")}
       >
         <Globe className="w-4 h-4" />
@@ -61,7 +61,7 @@ export default function LanguageSwitcher() {
 
       {open && (
         <div
-          className={`absolute top-full mt-1 start-0 sm:start-auto sm:end-0 bg-white rounded-xl shadow-xl border border-gray-100 py-1.5 min-w-[140px] z-50 ${
+          className={`absolute top-full mt-1 start-0 sm:start-auto sm:end-0 bg-white rounded-xl shadow-xl border border-[#C5A059]/10 py-1.5 min-w-[140px] z-50 ${
             closing
               ? "animate-out fade-out-0 zoom-out-95 duration-150"
               : "animate-in fade-in-0 zoom-in-95 duration-150"
@@ -73,13 +73,13 @@ export default function LanguageSwitcher() {
               onClick={() => handleSelect(l.code)}
               className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors ${
                 locale === l.code
-                  ? "bg-teal-50 text-teal-700 font-semibold"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  ? "bg-[#C5A059]/10 text-[#C5A059] font-semibold"
+                  : "text-gray-500 hover:bg-[#C5A059]/5 hover:text-[#1E1E1E]"
               }`}
             >
               <span className="text-base">{l.label}</span>
               {locale === l.code && (
-                <span className="ms-auto w-1.5 h-1.5 rounded-full bg-teal-500" />
+                <span className="ms-auto w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
               )}
             </button>
           ))}

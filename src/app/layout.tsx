@@ -48,6 +48,17 @@ export default function RootLayout({
           {children}
         </I18nProvider>
         <Toaster />
+        <script dangerouslySetInnerHTML={{ __html: `
+  (function() {
+    try {
+      var locale = localStorage.getItem('lumina-locale');
+      if (locale === 'fa' || locale === 'ar') {
+        document.documentElement.setAttribute('dir', 'rtl');
+        document.documentElement.setAttribute('lang', locale);
+      }
+    } catch(e) {}
+  })();
+`}} />
       </body>
     </html>
   );
