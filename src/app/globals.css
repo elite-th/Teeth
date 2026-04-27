@@ -199,14 +199,14 @@
 }
 
 /* ================================================================== */
-/*  HERO SECTION — White & Gold Luxury (4 Art Director Rules)         */
-/*  Rule 1: Clean #FAFAF7 — NO dark blocks, NO heavy gradients       */
-/*  Rule 2: Soft mask — image fades into white                        */
-/*  Rule 3: Heading #1E1E1E + subtle gold gradient, Subtitle #555     */
-/*  Rule 4: Glassmorphism stats — clean floating glass                */
+/*  HERO SECTION — Luxury Gold + Warm White (4 Art Director Rules)     */
+/*  Rule 1: #FAFAF7 warm white · #C5A059 matte gold · #1E1E1E charcoal */
+/*  Rule 2: Outline CTA + gold heading accents + gold stat numbers     */
+/*  Rule 3: Ambient gold gradients (5-10%) + gold image shadow         */
+/*  Rule 4: Glassmorphism stats + Vazirmatn typography RTL             */
 /* ================================================================== */
 
-/* ═══ RULE 1: Background — pure warm white, nothing else ═══ */
+/* ═══ RULE 1: Background — warm white #FAFAF7, never #FFFFFF ═══ */
 #hero {
   background: #FAFAF7 !important;
 }
@@ -217,7 +217,7 @@
   content: none !important;
 }
 
-/* ═══ RULE 3: Heading — solid charcoal + gold gradient at word ends ═══ */
+/* ═══ RULE 2: Heading — charcoal #1E1E1E with gold underline accent ═══ */
 .hero-heading-luxury {
   color: #1E1E1E !important;
   position: relative;
@@ -227,16 +227,16 @@
 .hero-heading-solid {
   color: #1E1E1E !important;
 }
-/* Lines 2+: charcoal → dark gold gradient */
+/* Lines 2+: charcoal → dark gold gradient (LTR only) */
 .hero-heading-gold-end {
-  display: inline-block; /* REQUIRED: background-clip:text fails on inline spans */
+  display: inline-block;
   background-image: linear-gradient(to right, #1E1E1E, #8B7355) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  color: transparent !important; /* Fallback for non-webkit browsers */
+  color: transparent !important;
 }
-/* RTL: remove gradient — Farsi text uses solid charcoal */
+/* RTL: solid charcoal — Farsi text doesn't use gradient */
 :root[dir="rtl"] .hero-heading-gold-end {
   background: none !important;
   background-image: none !important;
@@ -246,13 +246,13 @@
   color: #1E1E1E !important;
   display: inline !important;
 }
-/* Gold underline accent bar */
+/* Gold underline accent bar below heading */
 .hero-heading-luxury::after {
   content: '';
   position: absolute;
   bottom: -6px;
   inset-inline-start: 0;
-  width: 50px;
+  width: 60px;
   height: 3px;
   background: linear-gradient(to right, #C5A059, transparent);
   border-radius: 99px;
@@ -261,7 +261,38 @@
   background: linear-gradient(to left, #C5A059, transparent);
 }
 
-/* ═══ RULE 4: Glassmorphism stat boxes — clean floating glass ═══ */
+/* ═══ RULE 2: CTA — Outline/Luxury Ghost Button ═══
+    Transparent bg, 2px gold border, gold text
+    Hover: gold bg + white text */
+.hero-cta-outline {
+  background: transparent !important;
+  border: 2px solid #C5A059 !important;
+  color: #C5A059 !important;
+  box-shadow: 0 4px 20px rgba(197,160,89,0.10) !important;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.22,1,0.36,1) !important;
+}
+.hero-cta-outline:hover {
+  background: #C5A059 !important;
+  border-color: #C5A059 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 32px rgba(197,160,89,0.30) !important;
+  transform: translateY(-2px) !important;
+}
+.hero-cta-outline:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 4px 16px rgba(197,160,89,0.20) !important;
+}
+
+/* Keep the global .btn-cta styles for OTHER sections (booking, etc.) */
+/* Hero uses .hero-cta-outline instead — do NOT override here */
+
+/* ═══ RULE 2: Stat numbers — GOLD #C5A059 ═══ */
+#hero .stat-num {
+  color: #C5A059 !important;
+}
+
+/* ═══ RULE 4: Glassmorphism stat boxes ═══ */
 .hero-stat-float {
   background: rgba(255, 255, 255, 0.7) !important;
   backdrop-filter: blur(10px) !important;
@@ -270,32 +301,17 @@
   border-radius: 1rem !important;
   padding: 0.875rem 1.25rem !important;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+  transition: all 0.3s ease !important;
+}
+.hero-stat-float:hover {
+  border-color: rgba(197, 160, 89, 0.5) !important;
+  box-shadow: 0 12px 40px rgba(197,160,89,0.12) !important;
 }
 
-/* Hero stats: GOLD numbers (#C5A059) */
-#hero .stat-num {
-  color: #C5A059 !important;
-}
-
-/* Hero CTA: solid premium gold */
-#hero .btn-cta {
-  background: #C5A059 !important;
-  color: #1E1E1E !important;
-  border: none !important;
-  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4) !important;
-}
-#hero .btn-cta:hover {
-  background: #D4AF37 !important;
-  color: #1E1E1E !important;
-  border: none !important;
-  box-shadow: 0 8px 30px rgba(197, 160, 89, 0.55) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* ═══ RULE 2: Soft mask — image edge fades into white bg ═══ */
+/* ═══ RULE 3: Image mask + gold shadow (depth) ═══ */
 .hero-img-mask {
   position: relative;
-  box-shadow: 0 20px 60px rgba(197,160,89,0.12) !important;
+  box-shadow: 0 20px 60px rgba(197,160,89,0.20) !important;
 }
 /* LTR: right edge of image fades into #FAFAF7 */
 .hero-img-mask::after {
@@ -706,7 +722,8 @@ select.form-input {
   box-shadow: 0 8px 30px rgba(197, 160, 89, 0.55) !important;
 }
 
-/* Hero CTA specifically: even more padding + solid gold */
+/* Hero CTA: replaced by .hero-cta-outline (outline/ghost style) */
+/* Keeping #hero .btn-cta for backward compat if needed elsewhere */
 #hero .btn-cta {
   padding-block: 1.1rem !important;
   padding-inline: 2.25rem !important;

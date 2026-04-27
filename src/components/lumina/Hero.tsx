@@ -71,16 +71,16 @@ export default function Hero() {
       id="hero"
       ref={heroRef}
       className="relative min-h-screen flex items-center pt-20 lg:pt-24 overflow-hidden"
-      /* ══════ RULE 1: Clean warm white #FAFAF7 — NO dark blocks ══════ */
       style={{ background: "#FAFAF7" }}
     >
-      {/* Only the tiniest ambient gold glow for studio-light warmth */}
+      {/* ═══ RULE 3: Ambient gold gradients — break flatness ═══
+          Two soft radial glows: top-corner studio light + bottom warm wash */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background: isRtl
-            ? "radial-gradient(circle at 30% 30%, rgba(197,160,89,0.035) 0%, transparent 50%)"
-            : "radial-gradient(circle at 70% 30%, rgba(197,160,89,0.035) 0%, transparent 50%)",
+            ? "radial-gradient(ellipse 60% 50% at 25% 20%, rgba(197,160,89,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 70% 80%, rgba(197,160,89,0.05) 0%, transparent 60%)"
+            : "radial-gradient(ellipse 60% 50% at 75% 20%, rgba(197,160,89,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 30% 80%, rgba(197,160,89,0.05) 0%, transparent 60%)",
         }}
       />
 
@@ -92,7 +92,7 @@ export default function Hero() {
               ═══════════════════════════════════════════════ */}
           <div className="text-center lg:text-start">
 
-            {/* Badge */}
+            {/* Badge — gold tinted glass */}
             <div
               className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full border shadow-sm mb-6 sm:mb-8 backdrop-blur-sm"
               style={{
@@ -110,10 +110,7 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* ═══════════════════════════════════════════════
-                RULE 3: Heading — charcoal #1E1E1E
-                with subtle gold gradient at the end of words
-                ═══════════════════════════════════════════════ */}
+            {/* ═══ RULE 2: Heading — charcoal #1E1E1E with gold underline accent ═══ */}
             <h1
               className="hero-heading-luxury font-display text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight mb-6"
               data-hero-anim=".3s"
@@ -129,7 +126,7 @@ export default function Hero() {
               ) : null}
             </h1>
 
-            {/* Subtitle — dark grey #555555 */}
+            {/* Subtitle — charcoal grey */}
             <p
               className="text-lg sm:text-xl leading-[1.8] max-w-lg mx-auto lg:mx-0 mb-10"
               style={{ color: "#555555" }}
@@ -138,7 +135,9 @@ export default function Hero() {
               {t("hero.subtitle")}
             </p>
 
-            {/* CTA — Solid gold button */}
+            {/* ═══ RULE 2: CTA — Outline/Luxury Ghost Button ═══
+                Transparent bg, 2px gold border, gold text
+                Hover: gold bg + white text */}
             <div
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-12"
               data-hero-anim="1s"
@@ -146,12 +145,7 @@ export default function Hero() {
               <MagneticWrap>
                 <button
                   onClick={() => scrollToElement("#booking")}
-                  className="btn-cta inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] w-full sm:w-auto justify-center"
-                  style={{
-                    background: "#C5A059",
-                    color: "#1E1E1E",
-                    boxShadow: "0 4px 15px rgba(197,160,89,0.4)",
-                  }}
+                  className="hero-cta-outline inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] w-full sm:w-auto justify-center transition-all duration-300"
                 >
                   <CalendarCheck className="w-4 h-4" />
                   {t("hero.cta_book")}
@@ -167,21 +161,13 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* ═══════════════════════════════════════════════
-                RULE 4: Glassmorphism stat boxes
-                bg: rgba(255,255,255,0.7)
-                border: 1px solid rgba(197,160,89,0.3)
-                shadow: 0 8px 32px rgba(0,0,0,0.08)
-                backdrop-filter: blur(10px)
-                Numbers: gold #C5A059 bold
-                ═══════════════════════════════════════════════ */}
+            {/* ═══ RULE 2: Stats — gold numbers #C5A059 ═══
+                RULE 4: Glassmorphism boxes */}
             <div
               className="flex items-center gap-4 sm:gap-5 justify-center lg:justify-start"
               data-hero-anim="1.2s"
             >
-              <div
-                className="text-center lg:text-start hero-stat-float"
-              >
+              <div className="text-center lg:text-start hero-stat-float">
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={15} />+
                 </div>
@@ -191,7 +177,7 @@ export default function Hero() {
               </div>
               <div
                 className="w-px h-10"
-                style={{ background: "linear-gradient(to bottom, transparent, rgba(197,160,89,0.20), transparent)" }}
+                style={{ background: "linear-gradient(to bottom, transparent, rgba(197,160,89,0.25), transparent)" }}
               />
               <div className="text-center lg:text-start hero-stat-float">
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
@@ -203,7 +189,7 @@ export default function Hero() {
               </div>
               <div
                 className="w-px h-10"
-                style={{ background: "linear-gradient(to bottom, transparent, rgba(197,160,89,0.20), transparent)" }}
+                style={{ background: "linear-gradient(to bottom, transparent, rgba(197,160,89,0.25), transparent)" }}
               />
               <div className="text-center lg:text-start hero-stat-float">
                 <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
@@ -217,13 +203,11 @@ export default function Hero() {
           </div>
 
           {/* ═══════════════════════════════════════════════
-              RULE 2: Soft Mask — image edge fades into white bg
-              LTR: right edge fades → text on right
-              RTL: left edge fades → text on left
+              IMAGE COLUMN — Soft Mask + Gold Shadow
               ═══════════════════════════════════════════════ */}
           <div className="relative hidden lg:block" data-parallax="0.03">
             <div className="relative">
-              {/* Doctor image with soft-edge fade mask */}
+              {/* Doctor image with soft-edge fade mask + gold glow shadow */}
               <div className="hero-img-mask rounded-[2rem] overflow-hidden">
                 <img
                   src="/images/hero-dental.png"
@@ -232,7 +216,7 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Floating Badge: 100% Safe — clean glassmorphism */}
+              {/* Floating Badge: 100% Safe — glassmorphism */}
               <div
                 className="absolute -top-5 -end-5 rounded-2xl shadow-xl p-4"
                 style={{
@@ -265,7 +249,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating Badge: Trusted — clean glassmorphism */}
+              {/* Floating Badge: Trusted — glassmorphism */}
               <div
                 className="absolute -bottom-5 -start-5 rounded-2xl shadow-xl p-4"
                 style={{
@@ -321,6 +305,8 @@ export default function Hero() {
 
               {/* Decorative Circle — subtle gold ring */}
               <div className="absolute -z-10 -top-12 -end-12 w-48 h-48 rounded-full border border-[#C5A059]/15" />
+              {/* Extra decorative ring for depth */}
+              <div className="absolute -z-10 -bottom-8 -start-8 w-32 h-32 rounded-full border border-[#C5A059]/10" />
             </div>
           </div>
         </div>
