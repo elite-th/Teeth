@@ -98,7 +98,6 @@ let toastId = 0;
 export default function Booking() {
   const sectionRef = useScrollReveal();
   const { t, locale, dir } = useI18n();
-  const isRtl = dir === "rtl";
 
   /* ---- translated services ---- */
   const bookingServices = SERVICE_KEYS.map((key) => ({
@@ -245,12 +244,10 @@ export default function Booking() {
   /* ---- derived ---- */
   const firstName = fullName.trim().split(" ")[0] || "there";
 
-  /* ---- progress bar step colors ---- */
+  /* ---- progress bar step colors (universal gold) ---- */
   const dotClass = (step: number) => {
-    const inactiveBg = isRtl ? "bg-[#C5A059]/10 text-[#C5A059]/40" : "bg-rose-100 text-rose-300";
-    const activeClasses = isRtl 
-      ? "w-9 h-9 rounded-full bg-[#C5A059] text-[#1E1E1E] flex items-center justify-center text-xs font-bold shadow-md shadow-[#C5A059]/30 transition-all duration-500"
-      : "w-9 h-9 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs font-bold shadow-md shadow-rose-500/30 transition-all duration-500";
+    const inactiveBg = "bg-[#C5A059]/10 text-[#C5A059]/40";
+    const activeClasses = "w-9 h-9 rounded-full bg-[#C5A059] text-[#1E1E1E] flex items-center justify-center text-xs font-bold shadow-md shadow-[#C5A059]/30 transition-all duration-500";
     
     if (step < currentStep) return activeClasses;
     if (step === currentStep) return activeClasses;
@@ -258,21 +255,17 @@ export default function Booking() {
   };
   const labelClass = (step: number) =>
     step <= currentStep
-      ? isRtl ? "text-[11px] font-semibold text-[#C5A059] hidden sm:block" : "text-[11px] font-semibold text-rose-600 hidden sm:block"
-      : isRtl ? "text-[11px] font-medium text-[#C5A059]/30 hidden sm:block" : "text-[11px] font-medium text-rose-300 hidden sm:block";
+      ? "text-[11px] font-semibold text-[#C5A059] hidden sm:block"
+      : "text-[11px] font-medium text-[#C5A059]/30 hidden sm:block";
   const lineClass = (step: number) =>
     step < currentStep
-      ? isRtl ? "w-16 sm:w-24 h-[2px] bg-[#C5A059] mx-2 transition-colors duration-500" : "w-16 sm:w-24 h-[2px] bg-rose-500 mx-2 transition-colors duration-500"
-      : isRtl ? "w-16 sm:w-24 h-[2px] bg-[#C5A059]/15 mx-2 transition-colors duration-500" : "w-16 sm:w-24 h-[2px] bg-rose-200 mx-2 transition-colors duration-500";
+      ? "w-16 sm:w-24 h-[2px] bg-[#C5A059] mx-2 transition-colors duration-500"
+      : "w-16 sm:w-24 h-[2px] bg-[#C5A059]/15 mx-2 transition-colors duration-500";
 
-  /* RTL-aware CTA button classes — luxury solid gold */
-  const ctaBtnClass = isRtl
-    ? "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] font-bold text-[14px] shadow-lg shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55"
-    : "btn-cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-gray-900 font-bold text-[13px] shadow-lg shadow-amber-500/20";
+  /* Universal luxury solid gold CTA button classes */
+  const ctaBtnClass = "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] font-bold text-[14px] shadow-lg shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55";
 
-  const ctaBtnLargeClass = isRtl
-    ? "btn-cta inline-flex items-center gap-2.5 px-10 py-4.5 rounded-2xl bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] font-bold text-[15px] shadow-xl shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55 disabled:opacity-70"
-    : "btn-cta inline-flex items-center gap-2.5 px-10 py-4 rounded-xl text-gray-900 font-bold text-[15px] shadow-xl shadow-amber-500/25 disabled:opacity-70";
+  const ctaBtnLargeClass = "btn-cta inline-flex items-center gap-2.5 px-10 py-4.5 rounded-2xl bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] font-bold text-[15px] shadow-xl shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55 disabled:opacity-70";
 
   /* ================================================================ */
   /*  Render                                                           */
@@ -282,14 +275,11 @@ export default function Booking() {
       id="booking"
       ref={sectionRef}
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={isRtl 
-        ? { background: "linear-gradient(180deg, #FAFAF7 0%, #F7F3EC 50%, #F5F0E8 100%)" }
-        : { background: "linear-gradient(180deg, #fff1f2 0%, #ffe4e6 40%, #fecdd3 100%)" }
-      }
+      style={{ background: "linear-gradient(180deg, #FAFAF7 0%, #F7F3EC 50%, #F5F0E8 100%)" }}
     >
       {/* Background blur blobs */}
-      <div className={isRtl ? "absolute top-[-20%] start-[-10%] w-[600px] h-[600px] bg-[#C5A059] rounded-full filter blur-[140px] opacity-[0.06]" : "absolute top-[-20%] start-[-10%] w-[600px] h-[600px] bg-rose-300 rounded-full filter blur-[140px] opacity-20"} />
-      <div className={isRtl ? "absolute bottom-[-20%] end-[-10%] w-[600px] h-[600px] bg-[#D4AF37] rounded-full filter blur-[140px] opacity-[0.05]" : "absolute bottom-[-20%] end-[-10%] w-[600px] h-[600px] bg-orange-200 rounded-full filter blur-[140px] opacity-20"} />
+      <div className="absolute top-[-20%] start-[-10%] w-[600px] h-[600px] bg-[#C5A059] rounded-full filter blur-[140px] opacity-[0.06]" />
+      <div className="absolute bottom-[-20%] end-[-10%] w-[600px] h-[600px] bg-[#D4AF37] rounded-full filter blur-[140px] opacity-[0.05]" />
 
       {/* ---- Toast container ---- */}
       <div className="fixed top-24 end-4 z-[60] space-y-3 pointer-events-none">
@@ -317,20 +307,20 @@ export default function Booking() {
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         {/* ---- Heading ---- */}
         <div className="text-center max-w-2xl mx-auto mb-14 lg:mb-16">
-          <span className={`reveal inline-flex items-center gap-2.5 font-semibold text-[12px] mb-5 ${isRtl ? "text-[#C5A059]" : "text-rose-600"}`}>
-            <span className={isRtl ? "w-8 h-[2px] bg-gradient-to-r from-[#C5A059] to-[#D4AF37] rounded-full" : "w-8 h-[2px] bg-gradient-to-r from-rose-400 to-rose-600 rounded-full"} />
+          <span className="reveal inline-flex items-center gap-2.5 font-semibold text-[12px] mb-5 text-[#C5A059]">
+            <span className="w-8 h-[2px] bg-gradient-to-r from-[#C5A059] to-[#D4AF37] rounded-full" />
             {t("booking.label")}
-            <span className={isRtl ? "w-8 h-[2px] bg-gradient-to-r from-[#C5A059] to-[#D4AF37] rounded-full" : "w-8 h-[2px] bg-gradient-to-r from-rose-400 to-rose-600 rounded-full"} />
+            <span className="w-8 h-[2px] bg-gradient-to-r from-[#C5A059] to-[#D4AF37] rounded-full" />
           </span>
           <h2
             className="reveal d1 font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.15] mb-5"
-            style={{ color: isRtl ? "#1E1E1E" : "#881337" }}
+            style={{ color: "#1E1E1E" }}
           >
             {t("booking.heading_l1")}
             <br />
-            <span className={isRtl ? "text-[#C5A059]" : "text-rose-500"}>{t("booking.heading_l2")}</span>
+            <span className="text-[#C5A059]">{t("booking.heading_l2")}</span>
           </h2>
-          <p className={`reveal d2 text-lg leading-[1.8] ${isRtl ? "text-[#1E1E1E]/40" : "text-rose-800/40"}`}>
+          <p className="reveal d2 text-lg leading-[1.8] text-[#1E1E1E]/40">
             {t("booking.subtitle")}
           </p>
         </div>
@@ -339,12 +329,8 @@ export default function Booking() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-scale booking-card">
             <div
-              className="bg-white rounded-3xl shadow-xl shadow-rose-200/30 p-6 sm:p-8 lg:p-10"
-              style={
-                isRtl
-                  ? { boxShadow: "0 12px 48px rgba(197,160,89,0.08), 0 4px 16px rgba(197,160,89,0.04)" }
-                  : {}
-              }
+              className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10"
+              style={{ boxShadow: "0 12px 48px rgba(197,160,89,0.08), 0 4px 16px rgba(197,160,89,0.04)" }}
             >
               {/* ============ Progress Bar ============ */}
               {!isSubmitted && (
@@ -386,7 +372,7 @@ export default function Booking() {
                     {/* Full Name */}
                     <div>
                       <div className="float-group">
-                        <User className={`absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none ${isRtl ? "text-[#C5A059]/40" : "text-rose-300"}`} />
+                        <User className="absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none text-[#C5A059]/40" />
                         <input
                           type="text"
                           className="form-input w-full ps-11 pe-4 py-4 rounded-xl text-gray-900 text-sm"
@@ -409,7 +395,7 @@ export default function Booking() {
                     {/* Phone */}
                     <div>
                       <div className="float-group">
-                        <Phone className={`absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none ${isRtl ? "text-[#C5A059]/40" : "text-rose-300"}`} />
+                        <Phone className="absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none text-[#C5A059]/40" />
                         <input
                           type="tel"
                           className="form-input w-full ps-11 pe-4 py-4 rounded-xl text-gray-900 text-sm"
@@ -432,7 +418,7 @@ export default function Booking() {
 
                   {/* Email */}
                   <div className="float-group">
-                    <Mail className={`absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none ${isRtl ? "text-[#C5A059]/40" : "text-rose-300"}`} />
+                    <Mail className="absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none text-[#C5A059]/40" />
                     <input
                       type="email"
                       className="form-input w-full ps-11 pe-4 py-4 rounded-xl text-gray-900 text-sm"
@@ -446,7 +432,7 @@ export default function Booking() {
                   {/* Service */}
                   <div>
                     <div className="float-group relative">
-                      <ClipboardCheck className={`absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none ${isRtl ? "text-[#C5A059]/40" : "text-rose-300"}`} />
+                      <ClipboardCheck className="absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none text-[#C5A059]/40" />
                       <select
                         className="form-input w-full ps-11 pe-10 py-4 rounded-xl text-gray-900 text-sm appearance-none cursor-pointer"
                         value={service}
@@ -464,7 +450,7 @@ export default function Booking() {
                           </option>
                         ))}
                       </select>
-                      <ChevronDown className={isRtl ? "absolute end-4 top-1/2 -translate-y-1/2 w-3 h-3 text-[#C5A059]/40 pointer-events-none" : "absolute end-4 top-1/2 -translate-y-1/2 w-3 h-3 text-rose-300 pointer-events-none"} />
+                      <ChevronDown className="absolute end-4 top-1/2 -translate-y-1/2 w-3 h-3 text-[#C5A059]/40 pointer-events-none" />
                       <label>{t("booking.lbl_service")}</label>
                     </div>
                     {serviceError && (
@@ -495,7 +481,7 @@ export default function Booking() {
                   {/* Date */}
                   <div>
                     <div className="float-group">
-                      <Calendar className={`absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none ${isRtl ? "text-[#C5A059]/40" : "text-rose-300"}`} />
+                      <Calendar className="absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 z-10 pointer-events-none text-[#C5A059]/40" />
                       <input
                         type="date"
                         className="form-input w-full ps-11 pe-4 py-4 rounded-xl text-gray-900 text-sm"
@@ -513,7 +499,7 @@ export default function Booking() {
                           transform: "none",
                           fontSize: "11px",
                           fontWeight: 600,
-                          color: isRtl ? "#C5A059" : "#f43f5e",
+                          color: "#C5A059",
                           background: "white",
                         }}
                       >
@@ -529,7 +515,7 @@ export default function Booking() {
 
                   {/* Time Slots */}
                   <div>
-                    <label className={isRtl ? "block text-[12px] font-bold text-[#1E1E1E]/55 mb-3" : "block text-[12px] font-bold text-rose-800 mb-3"}>
+                    <label className="block text-[12px] font-bold text-[#1E1E1E]/55 mb-3">
                       {t("booking.lbl_time")}
                     </label>
                     {timeError && (
@@ -542,7 +528,7 @@ export default function Booking() {
                         <button
                           key={slot}
                           type="button"
-                          className={`time-slot px-3 py-3 rounded-xl border-2 border-rose-200 text-sm font-medium text-rose-400 text-center ${
+                          className={`time-slot px-3 py-3 rounded-xl border-2 border-[#C5A059]/20 text-sm font-medium text-[#C5A059]/60 text-center ${
                             selectedTime === slot ? "selected" : ""
                           }`}
                           onClick={() => {
@@ -572,7 +558,7 @@ export default function Booking() {
                   <div className="flex justify-between pt-3">
                     <button
                       onClick={goBack}
-                      className={isRtl ? "inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-[#1E1E1E]/35 font-semibold text-[13px] hover:text-[#C5A059] hover:bg-[#C5A059]/5 transition-all" : "inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-rose-300 font-semibold text-[13px] hover:text-rose-500 hover:bg-rose-50 transition-all"}
+                      className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-[#1E1E1E]/35 font-semibold text-[13px] hover:text-[#C5A059] hover:bg-[#C5A059]/5 transition-all"
                     >
                       <ArrowLeft className="w-3 h-3 rtl:scale-x-100" />{" "}
                       {t("booking.btn_back")}
@@ -594,51 +580,51 @@ export default function Booking() {
               {currentStep === 3 && !isSubmitted && (
                 <div className="step-panel space-y-5">
                   {/* Summary Card */}
-                  <div className={isRtl ? "bg-gradient-to-br from-[#C5A059]/5 via-white to-[#D4AF37]/5 rounded-2xl p-6 sm:p-8 border border-[#C5A059]/10 mb-6" : "bg-gradient-to-br from-rose-50/80 via-white to-orange-50/50 rounded-2xl p-6 sm:p-8 border border-rose-100/60 mb-6"}>
-                    <h3 className={isRtl ? "font-bold text-[#1E1E1E] text-base mb-5 flex items-center gap-2.5" : "font-bold text-rose-900 text-base mb-5 flex items-center gap-2.5"}>
-                      <div className={isRtl ? "w-8 h-8 rounded-lg bg-[#C5A059]/10 flex items-center justify-center" : "w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center"}>
-                        <ClipboardCheck className={isRtl ? "w-4 h-4 text-[#C5A059]" : "w-4 h-4 text-rose-500"} />
+                  <div className="bg-gradient-to-br from-[#C5A059]/5 via-white to-[#D4AF37]/5 rounded-2xl p-6 sm:p-8 border border-[#C5A059]/10 mb-6">
+                    <h3 className="font-bold text-[#1E1E1E] text-base mb-5 flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-lg bg-[#C5A059]/10 flex items-center justify-center">
+                        <ClipboardCheck className="w-4 h-4 text-[#C5A059]" />
                       </div>
                       {t("booking.summary_title")}
                     </h3>
-                    <div className="space-y-0 divide-y divide-rose-100/50">
+                    <div className="space-y-0 divide-y divide-[#C5A059]/10">
                       <div className="flex justify-between py-3">
-                        <span className={isRtl ? "text-[13px] text-[#1E1E1E]/40" : "text-[13px] text-rose-400"}>
+                        <span className="text-[13px] text-[#1E1E1E]/40">
                           {t("booking.summary_patient")}
                         </span>
-                        <span className={isRtl ? "text-[13px] font-semibold text-[#1E1E1E]" : "text-[13px] font-semibold text-rose-900"}>
+                        <span className="text-[13px] font-semibold text-[#1E1E1E]">
                           {fullName}
                         </span>
                       </div>
                       <div className="flex justify-between py-3">
-                        <span className={isRtl ? "text-[13px] text-[#1E1E1E]/40" : "text-[13px] text-rose-400"}>
+                        <span className="text-[13px] text-[#1E1E1E]/40">
                           {t("booking.summary_phone")}
                         </span>
-                        <span className={isRtl ? "text-[13px] font-semibold text-[#1E1E1E]" : "text-[13px] font-semibold text-rose-900"} dir="ltr">
+                        <span className="text-[13px] font-semibold text-[#1E1E1E]" dir="ltr">
                           {phone}
                         </span>
                       </div>
                       <div className="flex justify-between py-3">
-                        <span className={isRtl ? "text-[13px] text-[#1E1E1E]/40" : "text-[13px] text-rose-400"}>
+                        <span className="text-[13px] text-[#1E1E1E]/40">
                           {t("booking.summary_service")}
                         </span>
-                        <span className={isRtl ? "text-[13px] font-semibold text-[#1E1E1E]" : "text-[13px] font-semibold text-rose-900"}>
+                        <span className="text-[13px] font-semibold text-[#1E1E1E]">
                           {service ? t(service) : ""}
                         </span>
                       </div>
                       <div className="flex justify-between py-3">
-                        <span className={isRtl ? "text-[13px] text-[#1E1E1E]/40" : "text-[13px] text-rose-400"}>
+                        <span className="text-[13px] text-[#1E1E1E]/40">
                           {t("booking.summary_date")}
                         </span>
-                        <span className={isRtl ? "text-[13px] font-semibold text-[#1E1E1E]" : "text-[13px] font-semibold text-rose-900"}>
+                        <span className="text-[13px] font-semibold text-[#1E1E1E]">
                           {formatDateNice(date)}
                         </span>
                       </div>
                       <div className="flex justify-between py-3">
-                        <span className={isRtl ? "text-[13px] text-[#1E1E1E]/40" : "text-[13px] text-rose-400"}>
+                        <span className="text-[13px] text-[#1E1E1E]/40">
                           {t("booking.summary_time")}
                         </span>
-                        <span className={isRtl ? "text-[13px] font-semibold text-[#1E1E1E]" : "text-[13px] font-semibold text-rose-900"}>
+                        <span className="text-[13px] font-semibold text-[#1E1E1E]">
                           {selectedTime}
                         </span>
                       </div>
@@ -646,9 +632,9 @@ export default function Booking() {
                   </div>
 
                   {/* Info Callout */}
-                  <div className={isRtl ? "flex items-start gap-3 bg-[#C5A059]/5 border border-[#C5A059]/15 rounded-xl p-4 mb-6" : "flex items-start gap-3 bg-amber-50/80 border border-amber-200 rounded-xl p-4 mb-6"}>
-                    <Info className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
-                    <p className="text-[13px] text-amber-800 leading-[1.8]">
+                  <div className="flex items-start gap-3 bg-[#C5A059]/5 border border-[#C5A059]/15 rounded-xl p-4 mb-6">
+                    <Info className="w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" />
+                    <p className="text-[13px] text-[#1E1E1E]/60 leading-[1.8]">
                       {t("booking.info_callout")}
                     </p>
                   </div>
@@ -657,7 +643,7 @@ export default function Booking() {
                   <div className="flex justify-between pt-2">
                     <button
                       onClick={goBack}
-                      className={isRtl ? "inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-[#1E1E1E]/35 font-semibold text-[13px] hover:text-[#C5A059] hover:bg-[#C5A059]/5 transition-all" : "inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-rose-300 font-semibold text-[13px] hover:text-rose-500 hover:bg-rose-50 transition-all"}
+                      className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-[#1E1E1E]/35 font-semibold text-[13px] hover:text-[#C5A059] hover:bg-[#C5A059]/5 transition-all"
                     >
                       <ArrowLeft className="w-3 h-3 rtl:scale-x-100" />{" "}
                       {t("booking.btn_back")}
@@ -687,7 +673,7 @@ export default function Booking() {
               {isSubmitted && (
                 <div className="text-center py-12">
                   <div
-                    className={isRtl ? "w-20 h-20 rounded-full bg-gradient-to-br from-[#C5A059] to-[#D4AF37] flex items-center justify-center mx-auto mb-6 shadow-xl shadow-[#C5A059]/30" : "w-20 h-20 rounded-full bg-gradient-to-br from-rose-400 to-rose-600 flex items-center justify-center mx-auto mb-6 shadow-xl shadow-rose-500/30"}
+                    className="w-20 h-20 rounded-full bg-gradient-to-br from-[#C5A059] to-[#D4AF37] flex items-center justify-center mx-auto mb-6 shadow-xl shadow-[#C5A059]/30"
                     style={{
                       animation:
                         "charIn .5s cubic-bezier(.22,1,.36,1) both",
@@ -695,22 +681,22 @@ export default function Booking() {
                   >
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className={isRtl ? "font-display text-2xl sm:text-3xl font-bold text-[#1E1E1E] mb-3" : "font-display text-2xl sm:text-3xl font-bold text-rose-900 mb-3"}>
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#1E1E1E] mb-3">
                     {t("booking.success_title")}
                   </h3>
-                  <p className={isRtl ? "text-[#1E1E1E]/40 text-lg mb-2" : "text-rose-400 text-lg mb-2"}>
+                  <p className="text-[#1E1E1E]/40 text-lg mb-2">
                     {t("booking.success_thankyou")}{" "}
-                    <span className={isRtl ? "font-semibold text-[#1E1E1E]" : "font-semibold text-rose-900"}>
+                    <span className="font-semibold text-[#1E1E1E]">
                       {firstName}
                     </span>
                     !
                   </p>
-                  <p className={isRtl ? "text-[#1E1E1E]/40 text-sm mb-8 max-w-md mx-auto leading-[1.8]" : "text-rose-300 text-sm mb-8 max-w-md mx-auto leading-[1.8]"}>
+                  <p className="text-[#1E1E1E]/40 text-sm mb-8 max-w-md mx-auto leading-[1.8]">
                     {t("booking.success_message")}
                   </p>
                   <button
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className={isRtl ? "inline-flex items-center gap-2 text-[#C5A059] font-semibold text-sm hover:text-[#D4AF37] transition-colors" : "inline-flex items-center gap-2 text-rose-500 font-semibold text-sm hover:text-rose-700 transition-colors"}
+                    className="inline-flex items-center gap-2 text-[#C5A059] font-semibold text-sm hover:text-[#D4AF37] transition-colors"
                   >
                     <ArrowLeft className="w-3 h-3 rtl:scale-x-100" />{" "}
                     {t("booking.success_home")}

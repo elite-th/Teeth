@@ -47,18 +47,21 @@ export default function Footer() {
     t("footer.legal_hipaa"),
   ];
 
+  /* Column headers: keep uppercase/tracking for LTR (English), normal-case for RTL cursive */
+  const colHeaderClass = isRtl
+    ? "font-semibold text-[11px] text-white/40 mb-5 normal-case"
+    : "font-semibold text-[11px] uppercase tracking-[0.15em] text-white/40 mb-5";
+
   return (
     <footer
       id="contact"
       className="relative overflow-hidden"
       style={{
-        background: isRtl
-          ? "linear-gradient(160deg, #0a0a0a 0%, #141210 40%, #1A1815 100%)"
-          : "linear-gradient(160deg, #0a0a0a 0%, #111111 40%, #171717 100%)",
+        background: "linear-gradient(160deg, #0a0a0a 0%, #141210 40%, #1A1815 100%)",
       }}
     >
       {/* Top accent line */}
-      <div className={isRtl ? "absolute top-0 start-0 end-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent" : "absolute top-0 start-0 end-0 h-px bg-gradient-to-r from-transparent via-rose-500/30 to-transparent"} />
+      <div className="absolute top-0 start-0 end-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-16 lg:py-20">
         {/* 4-column grid */}
@@ -66,12 +69,12 @@ export default function Footer() {
           {/* Column 1: Logo & Social */}
           <div>
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2.5 mb-5">
-              <div className={isRtl ? "w-10 h-10 rounded-xl bg-gradient-to-br from-[#C5A059] to-[#D4AF37] flex items-center justify-center" : "w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-orange-500 flex items-center justify-center"}>
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C5A059] to-[#D4AF37] flex items-center justify-center">
                 <ToothIcon className="w-4 h-4 text-white" />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-display font-bold text-xl text-white">Lumina</span>
-                <span className={isRtl ? "font-display font-light text-[10px] text-[#C5A059]/60 mt-0.5" : "font-display font-light text-[10px] text-rose-400 tracking-[0.15em] uppercase mt-0.5"}>
+                <span className={isRtl ? "font-display font-light text-[10px] text-[#C5A059]/60 mt-0.5" : "font-display font-light text-[10px] text-[#C5A059]/60 tracking-[0.15em] uppercase mt-0.5"}>
                   {t("footer.logo_sub")}
                 </span>
               </div>
@@ -90,7 +93,7 @@ export default function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className={isRtl ? "w-9 h-9 rounded-lg bg-white/5 hover:bg-[#C5A059] flex items-center justify-center transition-all duration-300 hover:scale-110" : "w-9 h-9 rounded-lg bg-white/5 hover:bg-rose-500 flex items-center justify-center transition-all duration-300 hover:scale-110"}
+                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#C5A059] flex items-center justify-center transition-all duration-300 hover:scale-110"
                 >
                   <Icon className="w-4 h-4 text-white" />
                 </a>
@@ -100,7 +103,7 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className={isRtl ? "font-semibold text-[11px] text-white/40 mb-5 normal-case" : "font-semibold text-[11px] uppercase tracking-[0.15em] text-white/40 mb-5"}>
+            <h4 className={colHeaderClass}>
               {t("footer.col_links")}
             </h4>
             <ul className="space-y-3">
@@ -108,7 +111,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <button
                     onClick={() => scrollToElement(link.href)}
-                    className={isRtl ? "text-white/30 text-sm hover:text-[#D4AF37] transition-colors" : "text-white/30 text-sm hover:text-rose-400 transition-colors"}
+                    className="text-white/30 text-sm hover:text-[#D4AF37] transition-colors"
                   >
                     {link.label}
                   </button>
@@ -119,25 +122,25 @@ export default function Footer() {
 
           {/* Column 3: Contact */}
           <div>
-            <h4 className={isRtl ? "font-semibold text-[11px] text-white/40 mb-5 normal-case" : "font-semibold text-[11px] uppercase tracking-[0.15em] text-white/40 mb-5"}>
+            <h4 className={colHeaderClass}>
               {t("footer.col_contact")}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className={isRtl ? "w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" : "w-4 h-4 text-rose-500 mt-0.5 shrink-0"} />
+                <MapPin className="w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" />
                 <span className="text-white/30 text-sm leading-relaxed whitespace-pre-line">
                   {t("footer.address")}
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className={isRtl ? "w-4 h-4 text-[#C5A059] shrink-0" : "w-4 h-4 text-rose-500 shrink-0"} />
-                <a href="tel:+1234567890" className={isRtl ? "text-white/30 text-sm hover:text-[#D4AF37] transition-colors" : "text-white/30 text-sm hover:text-rose-400 transition-colors"}>
+                <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
+                <a href="tel:+1234567890" className="text-white/30 text-sm hover:text-[#D4AF37] transition-colors">
                   (123) 456-7890
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className={isRtl ? "w-4 h-4 text-[#C5A059] shrink-0" : "w-4 h-4 text-rose-500 shrink-0"} />
-                <a href="mailto:hello@luminadental.com" className={isRtl ? "text-white/30 text-sm hover:text-[#D4AF37] transition-colors" : "text-white/30 text-sm hover:text-rose-400 transition-colors"}>
+                <Mail className="w-4 h-4 text-[#C5A059] shrink-0" />
+                <a href="mailto:hello@luminadental.com" className="text-white/30 text-sm hover:text-[#D4AF37] transition-colors">
                   hello@luminadental.com
                 </a>
               </li>
@@ -146,7 +149,7 @@ export default function Footer() {
 
           {/* Column 4: Working Hours */}
           <div>
-            <h4 className={isRtl ? "font-semibold text-[11px] text-white/40 mb-5 normal-case" : "font-semibold text-[11px] uppercase tracking-[0.15em] text-white/40 mb-5"}>
+            <h4 className={colHeaderClass}>
               {t("footer.col_hours")}
             </h4>
             <ul className="space-y-3">
@@ -159,9 +162,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <div className={isRtl ? "mt-5 inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#C5A059]/10 border border-[#C5A059]/15" : "mt-5 inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-rose-500/10 border border-rose-500/15"}>
-              <PhoneCall className={isRtl ? "w-3 h-3 text-[#C5A059]" : "w-3 h-3 text-rose-400"} />
-              <span className={isRtl ? "text-[11px] text-[#D4AF37] font-semibold" : "text-[11px] text-rose-300 font-semibold"}>{t("footer.emergency")}</span>
+            <div className="mt-5 inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#C5A059]/10 border border-[#C5A059]/15">
+              <PhoneCall className="w-3 h-3 text-[#C5A059]" />
+              <span className="text-[11px] text-[#D4AF37] font-semibold">{t("footer.emergency")}</span>
             </div>
           </div>
         </div>

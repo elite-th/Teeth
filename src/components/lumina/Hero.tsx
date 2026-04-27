@@ -23,9 +23,7 @@ function StatCounter({
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const { t, dir } = useI18n();
-
-  const isRtl = dir === "rtl";
+  const { t } = useI18n();
 
   /* ── Parallax on hero image ── */
   useEffect(() => {
@@ -66,68 +64,23 @@ export default function Hero() {
     });
   }, []);
 
-  /* ── RTL: Smart Gold System — Gold ONLY in CTA, stat numbers, ambient glow ── */
-  /* #C5A059 normal gold · #D4AF37 hover gold · #1E1E1E charcoal · #8B7355 dark gold */
-  const textMain = isRtl ? "text-[#1E1E1E]" : "text-white";
-  const textSub = isRtl ? "text-[#1E1E1E]/55" : "text-teal-200/60";
-  const textMuted = isRtl ? "text-[#1E1E1E]/40" : "text-teal-300/50";
-  const badgeBg = isRtl
-    ? "bg-[#C5A059]/10 border-[#C5A059]/25"
-    : "bg-white/10 border-white/10";
-  const badgeText = isRtl ? "text-[#1E1E1E]/55" : "text-teal-200";
-  const headingAccent = isRtl
-    ? "bg-gradient-to-r from-[#C5A059] via-[#D4B06A] to-[#B08D3E]"
-    : "bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-200";
-  const exploreText = isRtl
-    ? "text-[#1E1E1E]/50"
-    : "text-teal-200/70";
-  const exploreHover = isRtl
-    ? "hover:bg-[#1E1E1E]/5"
-    : "hover:bg-white/5";
-  /* Stats: GOLD numbers for RTL — one of 3 allowed gold locations */
-  const statValue = isRtl ? "text-[#C5A059]" : "text-white";
-  const statLabel = isRtl ? "text-[#1E1E1E]/40" : "text-teal-300/50";
-  const dividerColor = isRtl
-    ? "from-transparent via-[#C5A059]/20 to-transparent"
-    : "from-transparent via-teal-400/30 to-transparent";
-  /* Floating badges: glassmorphism for RTL */
-  const floatingBg = isRtl
-    ? "bg-white/60 backdrop-blur-[10px] border-[#C5A059]/30 shadow-lg shadow-[#C5A059]/8"
-    : "bg-white/10 border-white/10";
-  const floatingIconBg = isRtl
-    ? "from-[#C5A059] to-[#B08D3E] shadow-[#C5A059]/20"
-    : "from-teal-400 to-emerald-500 shadow-teal-500/30";
-  const floatingText = isRtl ? "text-[#1E1E1E]" : "text-white";
-  const floatingSubText = isRtl ? "text-[#1E1E1E]/40" : "text-white/50";
-  const avatarBorderColor = isRtl ? "#C5A059" : "#134e4a";
-  const avatarOverflowBg = isRtl
-    ? "bg-[#C5A059]/10 text-[#C5A059]"
-    : "bg-teal-400/20 text-teal-200";
-  const decorBorderColor = isRtl
-    ? "border-[#C5A059]/20"
-    : "border-teal-400/10";
-
   return (
     <section
       id="hero"
       ref={heroRef}
       className="relative min-h-screen flex items-center pt-20 lg:pt-24 overflow-hidden"
-      style={
-        isRtl
-          ? { background: "linear-gradient(160deg, #FAFAF7 0%, #F5F0E8 30%, #FFFDF8 60%, #FAFAF7 100%)" }
-          : { background: "linear-gradient(160deg, #042f2e 0%, #0a3d3a 30%, #134e4a 60%, #115e59 100%)" }
-      }
+      style={{ background: "linear-gradient(160deg, #FAFAF7 0%, #F5F0E8 30%, #FFFDF8 60%, #FAFAF7 100%)" }}
     >
-      {/* Mesh Blobs — golden tones for RTL */}
+      {/* Mesh Blobs — golden tones for all languages */}
       <div
         className="hero-mesh-blob"
         style={{
           width: 600,
           height: 600,
-          background: isRtl ? "#C5A059" : "#2dd4bf",
+          background: "#C5A059",
           top: "-15%",
           insetInlineEnd: "-5%",
-          opacity: isRtl ? 0.08 : 0.2,
+          opacity: 0.08,
         }}
       />
       <div
@@ -135,11 +88,11 @@ export default function Hero() {
         style={{
           width: 500,
           height: 500,
-          background: isRtl ? "#E8BD3E" : "#f59e0b",
+          background: "#E8BD3E",
           bottom: "-10%",
           insetInlineStart: "-5%",
           animationDelay: "-5s",
-          opacity: isRtl ? 0.06 : 0.2,
+          opacity: 0.06,
         }}
       />
       <div
@@ -147,81 +100,67 @@ export default function Hero() {
         style={{
           width: 350,
           height: 350,
-          background: isRtl ? "#D4B06A" : "#14b8a6",
+          background: "#D4B06A",
           top: "40%",
           insetInlineStart: "30%",
           animationDelay: "-9s",
-          opacity: isRtl ? 0.05 : 0.2,
+          opacity: 0.05,
         }}
       />
 
-      {/* Golden Gradient Overlay for RTL — breaks flatness */}
+      {/* Golden Gradient Overlay — breaks flatness */}
       <div
-        className={`absolute inset-0 z-[1] ${
-          isRtl
-            ? "bg-gradient-to-b from-[#C5A059]/[0.05] via-transparent to-[#FAFAF7]/70"
-            : "bg-gradient-to-b from-transparent via-transparent to-[#042f2e]/90"
-        }`}
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-[#C5A059]/[0.05] via-transparent to-[#FAFAF7]/70"
       />
 
-      {/* Dot Pattern — subtle gold for RTL */}
+      {/* Dot Pattern — subtle gold for all languages */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
-          opacity: isRtl ? 0.02 : 0.03,
-          backgroundImage: isRtl
-            ? "radial-gradient(circle,#C5A059 1px,transparent 1px)"
-            : "radial-gradient(circle,#fff 1px,transparent 1px)",
+          opacity: 0.02,
+          backgroundImage: "radial-gradient(circle,#C5A059 1px,transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
 
       {/* Ambient Gold Glow — professional studio lighting feel */}
-      {isRtl && (
-        <div
-          className="absolute inset-0 z-[1] pointer-events-none"
-          style={{
-            background: "radial-gradient(circle at 75% 25%, rgba(197,160,89,0.10) 0%, transparent 55%)",
-          }}
-        />
-      )}
-      {isRtl && (
-        <div
-          className="absolute inset-0 z-[1] pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse 40% 50% at 15% 75%, rgba(197,160,89,0.06) 0%, transparent 60%)",
-          }}
-        />
-      )}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background: "radial-gradient(circle at 75% 25%, rgba(197,160,89,0.10) 0%, transparent 55%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 40% 50% at 15% 75%, rgba(197,160,89,0.06) 0%, transparent 60%)",
+        }}
+      />
 
       <div className="relative z-[2] max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-8 lg:py-6 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-start">
-            {/* Badge — charcoal text for RTL (smart gold rule) */}
+            {/* Badge */}
             <div
-              className={`inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full ${badgeBg} shadow-sm mb-6 sm:mb-8 backdrop-blur-sm`}
+              className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#C5A059]/10 border-[#C5A059]/25 shadow-sm mb-6 sm:mb-8 backdrop-blur-sm"
               data-hero-anim=".1s"
             >
-              <span className={`w-2 h-2 rounded-full ${isRtl ? "bg-[#C5A059]" : "bg-teal-500"} pulse-dot flex-shrink-0`} />
-              <span className={`text-[10px] sm:text-[11px] font-bold ${badgeText} whitespace-nowrap`}>
+              <span className="w-2 h-2 rounded-full bg-[#C5A059] pulse-dot flex-shrink-0" />
+              <span className="text-[10px] sm:text-[11px] font-bold text-[#1E1E1E]/55 whitespace-nowrap">
                 {t("hero.badge")}
               </span>
             </div>
 
-            {/* Heading — RTL: full title gradient charcoal→dark gold; LTR: as-is */}
+            {/* Heading — universal gradient from dark gold to charcoal */}
             <h1
-              className={`font-display text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight mb-6 hero-heading-rtl ${
-                isRtl
-                  ? "bg-gradient-to-l from-[#1E1E1E] to-[#8B7355] bg-clip-text text-transparent"
-                  : `${textMain}`
-              }`}
+              className="font-display text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight mb-6 hero-heading-rtl bg-gradient-to-r from-[#8B7355] to-[#1E1E1E] bg-clip-text text-transparent"
               data-hero-anim=".3s"
             >
               {t("hero.heading_l1")}
               <br />
               {t("hero.heading_l2")}{" "}
-              <span className={`${isRtl ? "" : headingAccent + " bg-clip-text text-transparent"}`}>
+              <span>
                 {t("hero.heading_l3")}
               </span>{" "}
               {t("hero.heading_l4")}
@@ -229,13 +168,13 @@ export default function Hero() {
 
             {/* Subtitle */}
             <p
-              className={`text-lg sm:text-xl ${textSub} leading-[1.8] max-w-lg mx-auto lg:mx-0 mb-10`}
+              className="text-lg sm:text-xl text-[#1E1E1E]/55 leading-[1.8] max-w-lg mx-auto lg:mx-0 mb-10"
               data-hero-anim=".8s"
             >
               {t("hero.subtitle")}
             </p>
 
-            {/* CTAs — SOLID gold button for RTL */}
+            {/* CTAs — SOLID gold button */}
             <div
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-12"
               data-hero-anim="1s"
@@ -243,11 +182,7 @@ export default function Hero() {
               <MagneticWrap>
                 <button
                   onClick={() => scrollToElement("#booking")}
-                  className={`btn-cta inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] shadow-xl w-full sm:w-auto justify-center ${
-                    isRtl
-                      ? "bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55"
-                      : "text-gray-900 shadow-amber-500/25"
-                  }`}
+                  className="btn-cta inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] shadow-xl w-full sm:w-auto justify-center bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55"
                 >
                   <CalendarCheck className="w-4 h-4" />
                   {t("hero.cta_book")}
@@ -255,41 +190,41 @@ export default function Hero() {
               </MagneticWrap>
               <button
                 onClick={() => scrollToElement("#services")}
-                className={`inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl ${exploreText} font-medium text-[15px] ${exploreHover} transition-all w-full sm:w-auto justify-center group`}
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl text-[#1E1E1E]/50 hover:bg-[#1E1E1E]/5 font-medium text-[15px] transition-all w-full sm:w-auto justify-center group"
               >
                 {t("hero.cta_explore")}{" "}
                 <ChevronDown className="w-3 h-3 group-hover:translate-y-1 transition-transform rtl:rotate-180" />
               </button>
             </div>
 
-            {/* Stats — GOLD numbers in glassmorphism containers for RTL */}
+            {/* Stats — GOLD numbers in glassmorphism containers */}
             <div
-              className={`flex items-center gap-4 sm:gap-5 justify-center lg:justify-start`}
+              className="flex items-center gap-4 sm:gap-5 justify-center lg:justify-start"
               data-hero-anim="1.2s"
             >
-              <div className={`text-center lg:text-start ${isRtl ? "hero-stat-glass" : ""}`}>
-                <div className={`text-2xl sm:text-3xl font-bold ${statValue}`}>
+              <div className="text-center lg:text-start hero-stat-glass">
+                <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={15} />+
                 </div>
-                <div className={`text-[11px] ${statLabel} font-medium mt-0.5`}>
+                <div className="text-[11px] text-[#1E1E1E]/40 font-medium mt-0.5">
                   {t("hero.stat_years")}
                 </div>
               </div>
-              <div className={`w-px h-10 bg-gradient-to-b ${dividerColor}`} />
-              <div className={`text-center lg:text-start ${isRtl ? "hero-stat-glass" : ""}`}>
-                <div className={`text-2xl sm:text-3xl font-bold ${statValue}`}>
+              <div className="w-px h-10 bg-gradient-to-b from-transparent via-[#C5A059]/20 to-transparent" />
+              <div className="text-center lg:text-start hero-stat-glass">
+                <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={4.9} isDecimal />
                 </div>
-                <div className={`text-[11px] ${statLabel} font-medium mt-0.5`}>
+                <div className="text-[11px] text-[#1E1E1E]/40 font-medium mt-0.5">
                   {t("hero.stat_rating")}
                 </div>
               </div>
-              <div className={`w-px h-10 bg-gradient-to-b ${dividerColor}`} />
-              <div className={`text-center lg:text-start ${isRtl ? "hero-stat-glass" : ""}`}>
-                <div className={`text-2xl sm:text-3xl font-bold ${statValue}`}>
+              <div className="w-px h-10 bg-gradient-to-b from-transparent via-[#C5A059]/20 to-transparent" />
+              <div className="text-center lg:text-start hero-stat-glass">
+                <div className="text-2xl sm:text-3xl font-bold text-[#C5A059]">
                   <StatCounter target={8} />K+
                 </div>
-                <div className={`text-[11px] ${statLabel} font-medium mt-0.5`}>
+                <div className="text-[11px] text-[#1E1E1E]/40 font-medium mt-0.5">
                   {t("hero.stat_patients")}
                 </div>
               </div>
@@ -299,45 +234,41 @@ export default function Hero() {
           {/* Right: Hero Image with Badges */}
           <div className="relative hidden lg:block" data-parallax="0.03">
             <div className="relative">
-              {/* Golden soft shadow behind image for RTL */}
-              <div className={`rounded-[2rem] overflow-hidden shadow-2xl ${isRtl ? "shadow-[#C5A059]/20" : "shadow-black/30"}`}>
+              {/* Golden soft shadow behind image */}
+              <div className="rounded-[2rem] overflow-hidden shadow-2xl shadow-[#C5A059]/20">
                 <img
                   src="/images/hero-dental.png"
                   alt={t("hero.img_alt")}
                   className="w-full h-[560px] object-cover"
                 />
                 <div
-                  className={`absolute inset-0 ${
-                    isRtl
-                      ? "bg-gradient-to-t from-[#C5A059]/15 via-transparent to-transparent"
-                      : "bg-gradient-to-t from-[#042f2e]/60 via-transparent to-transparent"
-                  }`}
+                  className="absolute inset-0 bg-gradient-to-t from-[#C5A059]/15 via-transparent to-transparent"
                 />
               </div>
 
-              {/* Floating Badge: 100% Safe — glassmorphism for RTL */}
+              {/* Floating Badge: 100% Safe — glassmorphism */}
               <div
-                className={`absolute -top-5 -end-5 ${floatingBg} rounded-2xl shadow-xl p-4`}
+                className="absolute -top-5 -end-5 bg-white/60 backdrop-blur-[10px] border-[#C5A059]/30 shadow-lg shadow-[#C5A059]/8 rounded-2xl shadow-xl p-4"
                 data-hero-anim="1.4s"
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${floatingIconBg} flex items-center justify-center shadow-lg`}>
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#C5A059] to-[#B08D3E] flex items-center justify-center shadow-lg shadow-[#C5A059]/20">
                     <Shield className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className={`text-sm font-bold ${floatingText}`}>
+                    <div className="text-sm font-bold text-[#1E1E1E]">
                       {t("hero.badge_safe")}
                     </div>
-                    <div className={`text-[11px] ${floatingSubText}`}>
+                    <div className="text-[11px] text-[#1E1E1E]/40">
                       {t("hero.badge_safe_sub")}
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Badge: Trusted — glassmorphism for RTL */}
+              {/* Floating Badge: Trusted — glassmorphism */}
               <div
-                className={`absolute -bottom-5 -start-5 ${floatingBg} rounded-2xl shadow-xl p-4`}
+                className="absolute -bottom-5 -start-5 bg-white/60 backdrop-blur-[10px] border-[#C5A059]/30 shadow-lg shadow-[#C5A059]/8 rounded-2xl shadow-xl p-4"
                 data-hero-anim="1.6s"
               >
                 <div className="flex items-center gap-3">
@@ -345,34 +276,34 @@ export default function Hero() {
                     <img
                       src="/images/avatar-p1.png"
                       alt=""
-                      className={`w-9 h-9 rounded-full border-2 object-cover`}
-                      style={{ borderColor: avatarBorderColor }}
+                      className="w-9 h-9 rounded-full border-2 object-cover"
+                      style={{ borderColor: "#C5A059" }}
                     />
                     <img
                       src="/images/avatar-p2.png"
                       alt=""
-                      className={`w-9 h-9 rounded-full border-2 object-cover`}
-                      style={{ borderColor: avatarBorderColor }}
+                      className="w-9 h-9 rounded-full border-2 object-cover"
+                      style={{ borderColor: "#C5A059" }}
                     />
                     <img
                       src="/images/avatar-p3.png"
                       alt=""
-                      className={`w-9 h-9 rounded-full border-2 object-cover`}
-                      style={{ borderColor: avatarBorderColor }}
+                      className="w-9 h-9 rounded-full border-2 object-cover"
+                      style={{ borderColor: "#C5A059" }}
                     />
-                    <div className={`w-9 h-9 rounded-full border-2 ${avatarOverflowBg} flex items-center justify-center text-[10px] font-bold`} style={{ borderColor: avatarBorderColor }}>
+                    <div className="w-9 h-9 rounded-full border-2 bg-[#C5A059]/10 text-[#C5A059] flex items-center justify-center text-[10px] font-bold" style={{ borderColor: "#C5A059" }}>
                       +8K
                     </div>
                   </div>
                   <div>
-                    <div className={`text-sm font-bold ${floatingText}`}>{t("hero.badge_trusted")}</div>
-                    <div className={`text-[11px] ${floatingSubText}`}>{t("hero.badge_trusted_sub")}</div>
+                    <div className="text-sm font-bold text-[#1E1E1E]">{t("hero.badge_trusted")}</div>
+                    <div className="text-[11px] text-[#1E1E1E]/40">{t("hero.badge_trusted_sub")}</div>
                   </div>
                 </div>
               </div>
 
-              {/* Decorative Circle — gold for RTL */}
-              <div className={`absolute -z-10 -top-12 -end-12 w-48 h-48 rounded-full border ${decorBorderColor}`} />
+              {/* Decorative Circle — gold for all */}
+              <div className="absolute -z-10 -top-12 -end-12 w-48 h-48 rounded-full border border-[#C5A059]/20" />
             </div>
           </div>
         </div>

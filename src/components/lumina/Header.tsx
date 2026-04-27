@@ -25,7 +25,6 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t, dir } = useI18n();
-  const isRtl = dir === "rtl";
 
   const NAV_LINKS = [
     { label: t("header.nav_about"), href: "#about" },
@@ -70,20 +69,15 @@ export default function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  /* RTL-aware CTA button — solid gold for dark glass header */
-  const headerCtaClass = isRtl
-    ? "btn-cta inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] font-bold text-[13px] shadow-lg shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55"
-    : "btn-cta inline-flex items-center gap-2.5 px-7 py-3 rounded-xl text-gray-900 font-bold text-[13px] shadow-lg shadow-amber-500/20";
+  /* ── Universal CTA button — solid gold for dark glass header ── */
+  const headerCtaClass =
+    "btn-cta inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] font-bold text-[13px] shadow-lg shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55";
 
   return (
     <header
       id="header"
-      className={`fixed top-0 left-0 right-0 z-50 header-glass transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 header-glass transition-all duration-500 bg-[#121212]/92 border-b border-[#C5A059]/15 ${
         scrolled ? "shadow-sm" : ""
-      } ${
-        isRtl
-          ? "bg-[#121212]/92 border-b border-[#C5A059]/15"
-          : "bg-white/70 border-b border-white/40"
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
@@ -97,22 +91,14 @@ export default function Header() {
             }}
             className="flex items-center gap-2.5 group"
           >
-            <div className={`w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center shadow-lg transition-all duration-300 group-hover:rotate-6 ${
-              isRtl
-                ? "from-[#C5A059] to-[#D4AF37] shadow-[#C5A059]/20 group-hover:shadow-[#C5A059]/40"
-                : "from-teal-400 to-emerald-600 shadow-teal-500/20 group-hover:shadow-teal-500/40"
-            }`}>
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C5A059] to-[#D4AF37] flex items-center justify-center shadow-lg shadow-[#C5A059]/20 group-hover:shadow-[#C5A059]/40 transition-all duration-300 group-hover:rotate-6">
               <ToothIcon className="w-4 h-4 text-white" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className={`font-display font-bold text-[22px] tracking-tight ${
-                isRtl ? "text-[#D4AF37]" : "text-gray-900"
-              }`}>
+              <span className="font-display font-bold text-[22px] tracking-tight text-[#D4AF37]">
                 Lumina
               </span>
-              <span className={`font-display font-light text-[10px] mt-0.5 ${
-                isRtl ? "text-[#C5A059]/70" : "text-teal-600"
-              }`}>
+              <span className="font-display font-light text-[10px] mt-0.5 text-[#C5A059]/70">
                 {t("header.logo_sub")}
               </span>
             </div>
@@ -125,9 +111,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`nav-link text-[13px] font-medium transition-colors ${
-                  isRtl ? "text-white/75 hover:text-[#D4AF37]" : "text-gray-500 hover:text-gray-900"
-                }`}
+                className="nav-link text-[13px] font-medium text-white/75 hover:text-[#D4AF37] transition-colors"
               >
                 {link.label}
               </a>
@@ -139,16 +123,10 @@ export default function Header() {
             <LanguageSwitcher />
             <a
               href="tel:+1234567890"
-              className={`flex items-center gap-2 text-[13px] font-medium transition-colors ${
-                isRtl ? "text-white/55 hover:text-[#D4AF37]" : "text-gray-500 hover:text-teal-600"
-              }`}
+              className="flex items-center gap-2 text-[13px] font-medium text-white/55 hover:text-[#D4AF37] transition-colors"
             >
-              <span className={`w-7 h-7 rounded-lg flex items-center justify-center ${
-                isRtl ? "bg-[#C5A059]/10" : "bg-teal-50"
-              }`}>
-                <Phone className={`w-3.5 h-3.5 ${
-                  isRtl ? "text-[#D4AF37]" : "text-teal-600"
-                }`} />
+              <span className="w-7 h-7 rounded-lg flex items-center justify-center bg-[#C5A059]/10">
+                <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
               </span>
               (123) 456-7890
             </a>
@@ -169,29 +147,23 @@ export default function Header() {
 
           {/* ── Mobile Menu Button ── */}
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100/80 transition-colors"
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/10 transition-colors"
             aria-label={t("header.menu_aria")}
             onClick={() => setMenuOpen((prev) => !prev)}
           >
             <div className="relative w-5 h-4 flex flex-col justify-between">
               <span
-                className={`block h-0.5 w-full rounded-full origin-center transition-all duration-300 ${
-                  isRtl ? "bg-white" : "bg-gray-700"
-                } ${
+                className={`block h-0.5 w-full rounded-full origin-center transition-all duration-300 bg-white ${
                   menuOpen ? "rotate-45 translate-y-[7px]" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-full rounded-full transition-all duration-300 ${
-                  isRtl ? "bg-white" : "bg-gray-700"
-                } ${
+                className={`block h-0.5 w-full rounded-full transition-all duration-300 bg-white ${
                   menuOpen ? "opacity-0 scale-0" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-full rounded-full origin-center transition-all duration-300 ${
-                  isRtl ? "bg-white" : "bg-gray-700"
-                } ${
+                className={`block h-0.5 w-full rounded-full origin-center transition-all duration-300 bg-white ${
                   menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
                 }`}
               />
@@ -202,22 +174,16 @@ export default function Header() {
 
       {/* ── Mobile Menu (slide down) ── */}
       <div
-        className={`lg:hidden overflow-y-auto overflow-x-hidden transition-all duration-500 ease-in-out header-glass ${
-          isRtl ? "bg-[#121212]/95" : "bg-white/95"
-        }`}
+        className="lg:hidden overflow-y-auto overflow-x-hidden transition-all duration-500 ease-in-out header-glass bg-[#121212]/95"
         style={{ maxHeight: menuOpen ? "500px" : "0px" }}
       >
-        <div className={`px-5 py-5 space-y-1 border-t ${
-          isRtl ? "border-[#C5A059]/10" : "border-gray-100"
-        }`}>
+        <div className="px-5 py-5 space-y-1 border-t border-[#C5A059]/10">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className={`block px-4 py-3 rounded-xl text-[15px] font-medium transition-colors text-start ${
-                isRtl ? "text-white/65 hover:text-[#D4AF37] hover:bg-[#C5A059]/6" : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-              }`}
+              className="block px-4 py-3 rounded-xl text-[15px] font-medium text-white/65 hover:text-[#D4AF37] hover:bg-[#C5A059]/6 transition-colors text-start"
             >
               {link.label}
             </a>
@@ -231,9 +197,7 @@ export default function Header() {
           {/* Phone link */}
           <a
             href="tel:+1234567890"
-            className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-sm ${
-              isRtl ? "text-[#D4AF37] bg-[#C5A059]/10" : "text-teal-600 bg-teal-50"
-            }`}
+            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium text-sm text-[#D4AF37] bg-[#C5A059]/10"
           >
             <Phone className="w-4 h-4" />
             (123) 456-7890
@@ -247,9 +211,7 @@ export default function Header() {
               scrollToElement("#booking");
               setMenuOpen(false);
             }}
-            className={`btn-cta flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-bold text-sm shadow-lg ${
-              isRtl ? "bg-[#C5A059] text-[#1E1E1E] shadow-[#C5A059]/40" : "text-gray-900 shadow-amber-500/20"
-            }`}
+            className="btn-cta flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-bold text-sm shadow-lg bg-[#C5A059] text-[#1E1E1E] shadow-[#C5A059]/40"
           >
             {t("header.book_consultation")}
             <ArrowRight className="w-3 h-3 rtl:-scale-x-100" />
