@@ -52,3 +52,15 @@ prompt
 server.log
 # Skills directory
 /skills/
+# Non-project files
+.zscripts/
+Caddyfile
+db/
+download/
+examples/
+keep-server-alive.sh
+mini-services/
+skills/
+start-server.sh
+worklog.md
+server.log
