@@ -73,26 +73,29 @@ export default function Services() {
       id="services"
       ref={sectionRef}
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #eef2ff 0%, #e0e7ff 50%, #ede9fe 100%)" }}
+      style={isRtl
+        ? { background: "linear-gradient(180deg, #FAFAF7 0%, #F7F3EC 50%, #F5F0E8 100%)" }
+        : { background: "linear-gradient(180deg, #eef2ff 0%, #e0e7ff 50%, #ede9fe 100%)" }
+      }
     >
       {/* Background blur blob */}
-      <div className="absolute top-0 end-0 w-[700px] h-[700px] bg-indigo-300 rounded-full filter blur-[150px] opacity-20 -translate-y-1/3 translate-x-1/3" />
+      <div className={isRtl ? "absolute top-0 end-0 w-[700px] h-[700px] bg-[#C5A059] rounded-full filter blur-[150px] opacity-[0.06] -translate-y-1/3 translate-x-1/3" : "absolute top-0 end-0 w-[700px] h-[700px] bg-indigo-300 rounded-full filter blur-[150px] opacity-20 -translate-y-1/3 translate-x-1/3"} />
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
-          <span className="reveal inline-flex items-center gap-2.5 text-indigo-600 font-semibold text-[12px] mb-5">
-            <span className="w-8 h-[2px] bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full" />
+          <span className={`reveal inline-flex items-center gap-2.5 font-semibold text-[12px] mb-5 ${isRtl ? "text-[#C5A059]" : "text-indigo-600"}`}>
+            <span className={isRtl ? "w-8 h-[2px] bg-gradient-to-r from-[#C5A059] to-[#D4AF37] rounded-full" : "w-8 h-[2px] bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full"} />
             {t("services.label")}
-            <span className="w-8 h-[2px] bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full" />
+            <span className={isRtl ? "w-8 h-[2px] bg-gradient-to-r from-[#C5A059] to-[#D4AF37] rounded-full" : "w-8 h-[2px] bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full"} />
           </span>
           <h2
             className="reveal d1 font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.15] mb-5"
-            style={{ color: "#1e1b4b" }}
+            style={{ color: isRtl ? "#1E1E1E" : "#1e1b4b" }}
           >
             {t("services.heading")}
           </h2>
-          <p className="reveal d2 text-indigo-800/40 text-lg leading-[1.8]">
+          <p className={`reveal d2 text-lg leading-[1.8] ${isRtl ? "text-[#1E1E1E]/40" : "text-indigo-800/40"}`}>
             {t("services.subtitle")}
           </p>
         </div>
@@ -105,20 +108,21 @@ export default function Services() {
               className="service-card p-7 cursor-pointer group"
               style={
                 isRtl
-                  ? { boxShadow: "0 4px 24px rgba(0,0,0,0.05), 0 1px 6px rgba(0,0,0,0.03)" }
+                  ? { boxShadow: "0 4px 24px rgba(197,160,89,0.06), 0 1px 6px rgba(0,0,0,0.03)", border: "1px solid rgba(197,160,89,0.10)" }
                   : {}
               }
             >
               <div
                 className={`svc-icon w-14 h-14 rounded-2xl bg-gradient-to-br ${service.iconGradient} ${service.iconColor} flex items-center justify-center mb-5`}
+                style={isRtl ? { background: "linear-gradient(to bottom right, rgba(197,160,89,0.08), rgba(212,175,55,0.12))" } : {}}
               >
                 <service.icon className="w-5 h-5 text-lg" />
               </div>
-              <h3 className="font-bold text-[16px] mb-2.5" style={{ color: "#1e1b4b" }}>
+              <h3 className="font-bold text-[16px] mb-2.5" style={{ color: isRtl ? "#1E1E1E" : "#1e1b4b" }}>
                 {service.title}
               </h3>
-              <p className="text-[13px] text-indigo-800/40 leading-[1.8] mb-4">{service.description}</p>
-              <div className="svc-arrow flex items-center gap-1.5 text-indigo-600 text-[12px] font-bold">
+              <p className={isRtl ? "text-[13px] text-[#1E1E1E]/40 leading-[1.8] mb-4" : "text-[13px] text-indigo-800/40 leading-[1.8] mb-4"}>{service.description}</p>
+              <div className={isRtl ? "svc-arrow flex items-center gap-1.5 text-[#C5A059] text-[12px] font-bold" : "svc-arrow flex items-center gap-1.5 text-indigo-600 text-[12px] font-bold"}>
                 <span>{t("services.learn_more")}</span>
                 <ArrowRight className="w-3 h-3 rtl:-scale-x-100" />
               </div>

@@ -114,9 +114,9 @@ export default function Gallery() {
     },
   ];
 
-  /* RTL-aware CTA button classes — luxury gold outline */
+  /* RTL-aware CTA button classes — luxury solid gold */
   const ctaBtnClass = isRtl
-    ? "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl border-2 border-[#C5A059] bg-transparent text-[#C5A059] hover:bg-[#C5A059] hover:text-white font-bold text-[14px] shadow-lg shadow-[#C5A059]/15 hover:shadow-[#C5A059]/30"
+    ? "btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] font-bold text-[14px] shadow-lg shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55"
     : "btn-cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-gray-900 font-bold text-[13px] shadow-lg shadow-amber-500/20";
 
   return (
@@ -124,13 +124,18 @@ export default function Gallery() {
       id="gallery"
       ref={sectionRef}
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #0a0f1e 0%, #0f172a 40%, #1e1b4b 100%)" }}
+      style={isRtl 
+        ? { background: "linear-gradient(160deg, #1E1E1E 0%, #252220 40%, #1A1815 100%)" }
+        : { background: "linear-gradient(160deg, #0a0f1e 0%, #0f172a 40%, #1e1b4b 100%)" }
+      }
     >
       {/* Dot pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: "radial-gradient(circle,#818cf8 1px,transparent 1px)",
+          backgroundImage: isRtl 
+            ? "radial-gradient(circle,#C5A059 1px,transparent 1px)" 
+            : "radial-gradient(circle,#818cf8 1px,transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -138,15 +143,15 @@ export default function Gallery() {
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
-          <span className="reveal inline-flex items-center gap-2.5 text-indigo-300 font-semibold text-[12px] mb-5">
-            <span className="w-8 h-[2px] bg-indigo-400/60 rounded-full" />
+          <span className={`reveal inline-flex items-center gap-2.5 font-semibold text-[12px] mb-5 ${isRtl ? "text-[#D4AF37]" : "text-indigo-300"}`}>
+            <span className={isRtl ? "w-8 h-[2px] bg-[#C5A059]/40 rounded-full" : "w-8 h-[2px] bg-indigo-400/60 rounded-full"} />
             {t("gallery.label")}
-            <span className="w-8 h-[2px] bg-indigo-400/60 rounded-full" />
+            <span className={isRtl ? "w-8 h-[2px] bg-[#C5A059]/40 rounded-full" : "w-8 h-[2px] bg-indigo-400/60 rounded-full"} />
           </span>
           <h2 className="reveal d1 font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-white leading-[1.15] mb-5">
             {t("gallery.heading")}
           </h2>
-          <p className="reveal d2 text-indigo-200/40 text-lg leading-[1.8]">
+          <p className={`reveal d2 text-lg leading-[1.8] ${isRtl ? "text-white/40" : "text-indigo-200/40"}`}>
             {t("gallery.subtitle")}
           </p>
         </div>

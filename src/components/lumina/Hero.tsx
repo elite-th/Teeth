@@ -66,32 +66,33 @@ export default function Hero() {
     });
   }, []);
 
-  /* ── RTL: Luxury Gold + Warm White palette ── */
-  /* #FAFAF7 warm white bg · #C5A059 matte gold accent · #1E1E1E charcoal text */
+  /* ── RTL: Smart Gold System — Gold ONLY in CTA, stat numbers, ambient glow ── */
+  /* #C5A059 normal gold · #D4AF37 hover gold · #1E1E1E charcoal · #8B7355 dark gold */
   const textMain = isRtl ? "text-[#1E1E1E]" : "text-white";
   const textSub = isRtl ? "text-[#1E1E1E]/55" : "text-teal-200/60";
   const textMuted = isRtl ? "text-[#1E1E1E]/40" : "text-teal-300/50";
   const badgeBg = isRtl
     ? "bg-[#C5A059]/10 border-[#C5A059]/25"
     : "bg-white/10 border-white/10";
-  const badgeText = isRtl ? "text-[#C5A059]" : "text-teal-200";
+  const badgeText = isRtl ? "text-[#1E1E1E]/55" : "text-teal-200";
   const headingAccent = isRtl
     ? "bg-gradient-to-r from-[#C5A059] via-[#D4B06A] to-[#B08D3E]"
     : "bg-gradient-to-r from-teal-300 via-emerald-300 to-teal-200";
   const exploreText = isRtl
-    ? "text-[#C5A059]/70"
+    ? "text-[#1E1E1E]/50"
     : "text-teal-200/70";
   const exploreHover = isRtl
-    ? "hover:bg-[#C5A059]/5"
+    ? "hover:bg-[#1E1E1E]/5"
     : "hover:bg-white/5";
-  /* Stats: GOLD numbers for RTL — eye-catching */
+  /* Stats: GOLD numbers for RTL — one of 3 allowed gold locations */
   const statValue = isRtl ? "text-[#C5A059]" : "text-white";
   const statLabel = isRtl ? "text-[#1E1E1E]/40" : "text-teal-300/50";
   const dividerColor = isRtl
     ? "from-transparent via-[#C5A059]/20 to-transparent"
     : "from-transparent via-teal-400/30 to-transparent";
+  /* Floating badges: glassmorphism for RTL */
   const floatingBg = isRtl
-    ? "bg-[#FAFAF7]/95 border-[#C5A059]/15 shadow-lg shadow-[#C5A059]/10"
+    ? "bg-white/60 backdrop-blur-[10px] border-[#C5A059]/30 shadow-lg shadow-[#C5A059]/8"
     : "bg-white/10 border-white/10";
   const floatingIconBg = isRtl
     ? "from-[#C5A059] to-[#B08D3E] shadow-[#C5A059]/20"
@@ -175,12 +176,12 @@ export default function Hero() {
         }}
       />
 
-      {/* Golden corner glow — breaks flatness */}
+      {/* Ambient Gold Glow — professional studio lighting feel */}
       {isRtl && (
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse 60% 50% at 80% 20%, rgba(197,160,89,0.07) 0%, transparent 70%)",
+            background: "radial-gradient(circle at 75% 25%, rgba(197,160,89,0.10) 0%, transparent 55%)",
           }}
         />
       )}
@@ -188,7 +189,7 @@ export default function Hero() {
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse 50% 60% at 10% 80%, rgba(197,160,89,0.05) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse 40% 50% at 15% 75%, rgba(197,160,89,0.06) 0%, transparent 60%)",
           }}
         />
       )}
@@ -197,7 +198,7 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-start">
-            {/* Badge — gold outline style for RTL */}
+            {/* Badge — charcoal text for RTL (smart gold rule) */}
             <div
               className={`inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full ${badgeBg} shadow-sm mb-6 sm:mb-8 backdrop-blur-sm`}
               data-hero-anim=".1s"
@@ -208,15 +209,19 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* Heading — #1E1E1E with gold accent underline for RTL */}
+            {/* Heading — RTL: full title gradient charcoal→dark gold; LTR: as-is */}
             <h1
-              className={`font-display text-[clamp(2.5rem,6vw,5rem)] font-bold ${textMain} leading-[1.05] tracking-tight mb-6 hero-heading-rtl`}
+              className={`font-display text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-tight mb-6 hero-heading-rtl ${
+                isRtl
+                  ? "bg-gradient-to-l from-[#1E1E1E] to-[#8B7355] bg-clip-text text-transparent"
+                  : `${textMain}`
+              }`}
               data-hero-anim=".3s"
             >
               {t("hero.heading_l1")}
               <br />
               {t("hero.heading_l2")}{" "}
-              <span className={`${headingAccent} bg-clip-text text-transparent`}>
+              <span className={`${isRtl ? "" : headingAccent + " bg-clip-text text-transparent"}`}>
                 {t("hero.heading_l3")}
               </span>{" "}
               {t("hero.heading_l4")}
@@ -230,7 +235,7 @@ export default function Hero() {
               {t("hero.subtitle")}
             </p>
 
-            {/* CTAs — OUTLINE gold button for RTL (transparent bg, gold border, gold text) */}
+            {/* CTAs — SOLID gold button for RTL */}
             <div
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-12"
               data-hero-anim="1s"
@@ -240,7 +245,7 @@ export default function Hero() {
                   onClick={() => scrollToElement("#booking")}
                   className={`btn-cta inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-bold text-[15px] shadow-xl w-full sm:w-auto justify-center ${
                     isRtl
-                      ? "border-2 border-[#C5A059] bg-transparent text-[#C5A059] hover:bg-[#C5A059] hover:text-white hover:shadow-[#C5A059]/30 hover:border-[#C5A059]"
+                      ? "bg-[#C5A059] text-[#1E1E1E] hover:bg-[#D4AF37] hover:text-[#1E1E1E] shadow-[#C5A059]/40 hover:shadow-[#C5A059]/55"
                       : "text-gray-900 shadow-amber-500/25"
                   }`}
                 >
@@ -257,12 +262,12 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Stats — GOLD numbers for RTL */}
+            {/* Stats — GOLD numbers in glassmorphism containers for RTL */}
             <div
-              className="flex items-center gap-8 sm:gap-10 justify-center lg:justify-start"
+              className={`flex items-center gap-4 sm:gap-5 justify-center lg:justify-start`}
               data-hero-anim="1.2s"
             >
-              <div className="text-center lg:text-start">
+              <div className={`text-center lg:text-start ${isRtl ? "hero-stat-glass" : ""}`}>
                 <div className={`text-2xl sm:text-3xl font-bold ${statValue}`}>
                   <StatCounter target={15} />+
                 </div>
@@ -271,7 +276,7 @@ export default function Hero() {
                 </div>
               </div>
               <div className={`w-px h-10 bg-gradient-to-b ${dividerColor}`} />
-              <div className="text-center lg:text-start">
+              <div className={`text-center lg:text-start ${isRtl ? "hero-stat-glass" : ""}`}>
                 <div className={`text-2xl sm:text-3xl font-bold ${statValue}`}>
                   <StatCounter target={4.9} isDecimal />
                 </div>
@@ -280,7 +285,7 @@ export default function Hero() {
                 </div>
               </div>
               <div className={`w-px h-10 bg-gradient-to-b ${dividerColor}`} />
-              <div className="text-center lg:text-start">
+              <div className={`text-center lg:text-start ${isRtl ? "hero-stat-glass" : ""}`}>
                 <div className={`text-2xl sm:text-3xl font-bold ${statValue}`}>
                   <StatCounter target={8} />K+
                 </div>
@@ -310,9 +315,9 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Floating Badge: 100% Safe */}
+              {/* Floating Badge: 100% Safe — glassmorphism for RTL */}
               <div
-                className={`absolute -top-5 -end-5 ${floatingBg} backdrop-blur-xl rounded-2xl shadow-xl p-4`}
+                className={`absolute -top-5 -end-5 ${floatingBg} rounded-2xl shadow-xl p-4`}
                 data-hero-anim="1.4s"
               >
                 <div className="flex items-center gap-3">
@@ -330,9 +335,9 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating Badge: Trusted */}
+              {/* Floating Badge: Trusted — glassmorphism for RTL */}
               <div
-                className={`absolute -bottom-5 -start-5 ${floatingBg} backdrop-blur-xl rounded-2xl shadow-xl p-4`}
+                className={`absolute -bottom-5 -start-5 ${floatingBg} rounded-2xl shadow-xl p-4`}
                 data-hero-anim="1.6s"
               >
                 <div className="flex items-center gap-3">

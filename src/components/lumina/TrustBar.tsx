@@ -4,18 +4,19 @@ import { useI18n } from "@/i18n/context";
 
 export default function TrustBar() {
   const { t, dir } = useI18n();
+  const isRtl = dir === "rtl";
 
   /* Logical gradient directions: in LTR fade-in from edges, in RTL flip */
   const startFade = dir === "rtl"
-    ? "linear-gradient(to left, #FAF9F6, transparent)"
+    ? "linear-gradient(to left, #FAFAF7, transparent)"
     : "linear-gradient(to right, #FAF9F6, transparent)";
   const endFade = dir === "rtl"
-    ? "linear-gradient(to right, #FAF9F6, transparent)"
+    ? "linear-gradient(to right, #FAFAF7, transparent)"
     : "linear-gradient(to left, #FAF9F6, transparent)";
 
-  /* Trustbar heading: disable uppercase tracking for RTL */
+  /* Trustbar heading: disable uppercase tracking for RTL, gold tint */
   const headingClass = dir === "rtl"
-    ? "text-center text-[11px] font-semibold text-stone-300 normal-case"
+    ? "text-center text-[11px] font-semibold text-[#C5A059]/35 normal-case"
     : "text-center text-[11px] font-semibold text-stone-300 uppercase tracking-[0.2em]";
 
   const brands = [
@@ -29,8 +30,8 @@ export default function TrustBar() {
 
   return (
     <section
-      className="py-8 border-y border-stone-200/60 overflow-hidden"
-      style={{ background: "#FAF9F6" }}
+      className={isRtl ? "py-8 border-y border-[#C5A059]/10 overflow-hidden" : "py-8 border-y border-stone-200/60 overflow-hidden"}
+      style={{ background: isRtl ? "#FAFAF7" : "#FAF9F6" }}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 mb-4">
         <p className={headingClass}>
@@ -50,7 +51,7 @@ export default function TrustBar() {
           {brands.map((brand, i) => (
             <span
               key={`a-${i}`}
-              className="text-stone-300 font-display font-bold text-xl whitespace-nowrap"
+              className={isRtl ? "text-[#C5A059]/25 font-display font-bold text-xl whitespace-nowrap" : "text-stone-300 font-display font-bold text-xl whitespace-nowrap"}
             >
               {brand}
             </span>
@@ -58,7 +59,7 @@ export default function TrustBar() {
           {brands.map((brand, i) => (
             <span
               key={`b-${i}`}
-              className="text-stone-300 font-display font-bold text-xl whitespace-nowrap"
+              className={isRtl ? "text-[#C5A059]/25 font-display font-bold text-xl whitespace-nowrap" : "text-stone-300 font-display font-bold text-xl whitespace-nowrap"}
             >
               {brand}
             </span>

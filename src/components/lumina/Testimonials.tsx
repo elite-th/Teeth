@@ -44,29 +44,32 @@ export default function Testimonials() {
     <section
       ref={sectionRef}
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{
-        background: "linear-gradient(160deg, #052e16 0%, #064e3b 40%, #065f46 100%)",
-      }}
+      style={isRtl 
+        ? { background: "linear-gradient(160deg, #1E1E1E 0%, #252220 40%, #1A1815 100%)" }
+        : { background: "linear-gradient(160deg, #052e16 0%, #064e3b 40%, #065f46 100%)" }
+      }
     >
       {/* Dot pattern */}
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: "radial-gradient(circle,#6ee7b7 1px,transparent 1px)",
+          backgroundImage: isRtl 
+            ? "radial-gradient(circle,#C5A059 1px,transparent 1px)" 
+            : "radial-gradient(circle,#6ee7b7 1px,transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
 
       {/* Emerald blur blob */}
-      <div className="absolute bottom-0 end-0 w-[500px] h-[500px] bg-emerald-500 rounded-full filter blur-[160px] opacity-10 translate-x-1/2 translate-y-1/2" />
+      <div className={isRtl ? "absolute bottom-0 end-0 w-[500px] h-[500px] bg-[#C5A059] rounded-full filter blur-[160px] opacity-[0.06] translate-x-1/2 translate-y-1/2" : "absolute bottom-0 end-0 w-[500px] h-[500px] bg-emerald-500 rounded-full filter blur-[160px] opacity-10 translate-x-1/2 translate-y-1/2"} />
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="reveal inline-flex items-center gap-2.5 text-emerald-300 font-semibold text-[12px] mb-5">
-            <span className="w-8 h-[2px] bg-emerald-400/60 rounded-full" />
+          <span className={`reveal inline-flex items-center gap-2.5 font-semibold text-[12px] mb-5 ${isRtl ? "text-[#D4AF37]" : "text-emerald-300"}`}>
+            <span className={isRtl ? "w-8 h-[2px] bg-[#C5A059]/40 rounded-full" : "w-8 h-[2px] bg-emerald-400/60 rounded-full"} />
             {t("testimonials.label")}
-            <span className="w-8 h-[2px] bg-emerald-400/60 rounded-full" />
+            <span className={isRtl ? "w-8 h-[2px] bg-[#C5A059]/40 rounded-full" : "w-8 h-[2px] bg-emerald-400/60 rounded-full"} />
           </span>
           <h2 className="reveal d1 font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-white leading-[1.15]">
             {t("testimonials.heading")}
@@ -82,27 +85,28 @@ export default function Testimonials() {
               style={
                 isRtl
                   ? {
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.06), 0 1px 6px rgba(0,0,0,0.03)",
-                      border: "1px solid rgba(110, 231, 183, 0.12)",
+                      background: "rgba(255, 255, 255, 0.04)",
+                      border: "1px solid rgba(197, 160, 89, 0.15)",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.12), 0 1px 6px rgba(0,0,0,0.06)",
                     }
                   : {}
               }
             >
               <Stars />
-              <p className="text-emerald-100/50 text-sm leading-[1.8] mb-6 italic">
+              <p className={`text-sm leading-[1.8] mb-6 italic ${isRtl ? "text-white/45" : "text-emerald-100/50"}`}>
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
               <div className="flex items-center gap-3">
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-11 h-11 rounded-full object-cover border-2 border-emerald-400/20"
+                  className={isRtl ? "w-11 h-11 rounded-full object-cover border-2 border-[#C5A059]/20" : "w-11 h-11 rounded-full object-cover border-2 border-emerald-400/20"}
                 />
                 <div>
                   <div className="font-semibold text-white text-sm">
                     {testimonial.name}
                   </div>
-                  <div className="text-emerald-300/30 text-xs">
+                  <div className={isRtl ? "text-[#C5A059]/35 text-xs" : "text-emerald-300/30 text-xs"}>
                     {testimonial.treatment}
                   </div>
                 </div>

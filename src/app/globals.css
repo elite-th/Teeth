@@ -130,8 +130,73 @@
 /* ================================================================== */
 /*  RULE 1: Visual Integrity — Luxury Gold + Warm White for RTL       */
 /*  #FAFAF7 warm white bg · #C5A059 matte gold · #1E1E1E charcoal    */
-/*  Golden soft shadows · Outline gold CTA · Gold stat numbers        */
+/*  Solid gold CTA · Title gradient · Glassmorphism stats             */
+/*  Smart gold: only CTA + stats + ambient glow · Dark glass header  */
 /* ================================================================== */
+
+/* ================================================================== */
+/*  RTL Header: Dark Frosted Glass — Premium Navigation                */
+/*  #121212 dark bg · backdrop-blur · White + gold nav text            */
+/* ================================================================== */
+
+:root[dir="rtl"] #header {
+  background: rgba(18, 18, 18, 0.92) !important;
+  border-bottom-color: rgba(197, 160, 89, 0.15) !important;
+}
+:root[dir="rtl"] #header.header-glass {
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+}
+:root[dir="rtl"] #header .nav-link {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+:root[dir="rtl"] #header .nav-link:hover {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] #header .nav-link::after {
+  background: linear-gradient(90deg, #C5A059, #D4AF37) !important;
+}
+:root[dir="rtl"] #header .text-gray-900 {
+  color: #FFFFFF !important;
+}
+:root[dir="rtl"] #header .text-teal-600 {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] #header .text-gray-500 {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+:root[dir="rtl"] #header .bg-teal-50 {
+  background: rgba(197, 160, 89, 0.10) !important;
+}
+:root[dir="rtl"] #header .bg-gradient-to-br.from-teal-400 {
+  background: linear-gradient(to bottom right, #C5A059, #D4AF37) !important;
+}
+:root[dir="rtl"] #header .hover\:bg-gray-100\/80:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+:root[dir="rtl"] #header .bg-gray-700 {
+  background: #FFFFFF !important;
+}
+:root[dir="rtl"] #header .border-gray-100 {
+  border-color: rgba(197, 160, 89, 0.10) !important;
+}
+:root[dir="rtl"] #header .text-gray-600 {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+:root[dir="rtl"] #header .hover\:text-gray-900:hover {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] #header .hover\:bg-gray-50:hover {
+  background: rgba(197, 160, 89, 0.06) !important;
+}
+/* Mobile menu dark glass for RTL */
+:root[dir="rtl"] #header .bg-white\/95 {
+  background: rgba(18, 18, 18, 0.95) !important;
+}
+:root[dir="rtl"] #header .text-teal-600.bg-teal-50 {
+  background: rgba(197, 160, 89, 0.10) !important;
+  color: #D4AF37 !important;
+}
 
 /* Hero section: warm white background for RTL — NEVER #FFFFFF */
 :root[dir="rtl"] #hero {
@@ -148,9 +213,12 @@
   background: linear-gradient(to bottom, rgba(197,160,89,0.05), rgba(250,250,247,0.4)) !important;
 }
 
-/* Hero text colors: #1E1E1E charcoal — NEVER pure black */
+/* Hero title: luxury gradient from charcoal to dark gold */
 :root[dir="rtl"] #hero h1 {
-  color: #1E1E1E !important;
+  background: linear-gradient(to left, #1E1E1E, #8B7355) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 :root[dir="rtl"] #hero .text-teal-200\/60,
 :root[dir="rtl"] #hero p.text-teal-200\/60 {
@@ -159,11 +227,12 @@
 :root[dir="rtl"] #hero .text-teal-300\/50 {
   color: rgba(30, 30, 30, 0.40) !important;
 }
+/* Smart gold: .text-teal-200/300 NOT gold — only CTA, stats, ambient glow get gold */
 :root[dir="rtl"] #hero .text-teal-200 {
-  color: #C5A059 !important;
+  color: rgba(30, 30, 30, 0.55) !important;
 }
 :root[dir="rtl"] #hero .text-teal-300 {
-  color: #C5A059 !important;
+  color: rgba(30, 30, 30, 0.55) !important;
 }
 :root[dir="rtl"] #hero .bg-white\/10 {
   background: rgba(197, 160, 89, 0.08) !important;
@@ -176,7 +245,7 @@
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Hero heading: gold underline decoration for RTL */
+/* Hero heading: gold sideline accent for RTL — luxury vertical bar */
 :root[dir="rtl"] .hero-heading-rtl {
   position: relative;
   display: inline-block;
@@ -184,19 +253,26 @@
 :root[dir="rtl"] .hero-heading-rtl::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  bottom: -6px;
   inset-inline-start: 0;
-  width: 60px;
+  width: 50px;
   height: 3px;
   background: linear-gradient(to right, #C5A059, transparent);
   border-radius: 99px;
 }
 
-/* Hero floating badges: warm white with golden soft shadows */
+/* Hero floating badges: glassmorphism frosted glass for RTL */
+:root[dir="rtl"] #hero .backdrop-blur-\[10px\] {
+  background: rgba(255, 255, 255, 0.60) !important;
+  border-color: rgba(197, 160, 89, 0.30) !important;
+  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08) !important;
+  backdrop-filter: blur(10px) !important;
+}
+/* Legacy selector kept for safety */
 :root[dir="rtl"] #hero .backdrop-blur-xl {
-  background: rgba(250, 250, 247, 0.95) !important;
-  border-color: rgba(197, 160, 89, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(197, 160, 89, 0.10), 0 2px 8px rgba(197, 160, 89, 0.06) !important;
+  background: rgba(255, 255, 255, 0.60) !important;
+  border-color: rgba(197, 160, 89, 0.30) !important;
+  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08) !important;
 }
 :root[dir="rtl"] #hero .backdrop-blur-xl .text-white {
   color: #1E1E1E !important;
@@ -212,35 +288,43 @@
   border-color: rgba(197, 160, 89, 0.20) !important;
 }
 
-/* Hero stats: GOLD numbers (#C5A059) — eye-catching */
-:root[dir="rtl"] #hero .text-white {
-  color: #C5A059 !important;
-}
-:root[dir="rtl"] #hero .text-2xl.text-white,
-:root[dir="rtl"] #hero .text-3xl.text-white {
+/* Hero stats: GOLD numbers (#C5A059) — smart gold, only stat values */
+:root[dir="rtl"] #hero .stat-num {
   color: #C5A059 !important;
 }
 
-/* Hero CTA: outline gold style — transparent bg, gold border, gold text */
+/* Hero stats: glassmorphism containers for RTL — frosted gold glass */
+:root[dir="rtl"] .hero-stat-glass {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(197, 160, 89, 0.3) !important;
+  border-radius: 1rem !important;
+  padding: 0.875rem 1.25rem !important;
+  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08) !important;
+}
+
+/* Hero CTA: solid premium gold — gold bg, dark text, soft glow */
 :root[dir="rtl"] #hero .btn-cta {
-  background: transparent !important;
-  color: #C5A059 !important;
-  border: 2px solid #C5A059 !important;
-  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.15) !important;
+  background: #C5A059 !important;
+  color: #1E1E1E !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4) !important;
 }
 :root[dir="rtl"] #hero .btn-cta:hover {
-  background: #C5A059 !important;
-  color: #FFFFFF !important;
-  border-color: #C5A059 !important;
-  box-shadow: 0 12px 36px rgba(197, 160, 89, 0.30) !important;
+  background: #D4AF37 !important;
+  color: #1E1E1E !important;
+  border: none !important;
+  box-shadow: 0 8px 30px rgba(197, 160, 89, 0.55) !important;
+  transform: translateY(-2px) !important;
 }
 
-/* Hero explore button: gold accent */
+/* Hero explore button: charcoal (smart gold — gold not allowed here) */
 :root[dir="rtl"] #hero .text-teal-200\/70 {
-  color: rgba(197, 160, 89, 0.70) !important;
+  color: rgba(30, 30, 30, 0.50) !important;
 }
 :root[dir="rtl"] #hero .hover\:bg-white\/5:hover {
-  background: rgba(197, 160, 89, 0.05) !important;
+  background: rgba(30, 30, 30, 0.05) !important;
 }
 
 /* Hero image gradient overlay: golden tint */
@@ -270,6 +354,269 @@
 :root[dir="rtl"] #hero .tracking-\[0\.1em\],
 :root[dir="rtl"] #hero .tracking-\[0\.12em\] {
   letter-spacing: 0 !important;
+}
+
+/* ================================================================== */
+/*  RTL Section Backgrounds — Luxury Gold Harmony                     */
+/*  Each section gets warm cream or dark charcoal with gold tints     */
+/* ================================================================== */
+
+/* About: warm cream */
+:root[dir="rtl"] #about {
+  background: linear-gradient(180deg, #FAFAF7 0%, #FBF7F0 50%, #F5EFE4 100%) !important;
+}
+
+/* Services: warm cream with gold tint */
+:root[dir="rtl"] #services {
+  background: linear-gradient(180deg, #FAFAF7 0%, #F7F3EC 50%, #F5F0E8 100%) !important;
+}
+
+/* Process: dark charcoal with warm gold tint */
+:root[dir="rtl"] #process {
+  background: linear-gradient(160deg, #1E1E1E 0%, #2A2520 30%, #1A1815 100%) !important;
+}
+
+/* Gallery: dark charcoal with warm gold tint */
+:root[dir="rtl"] #gallery {
+  background: linear-gradient(160deg, #1E1E1E 0%, #252220 40%, #1A1815 100%) !important;
+}
+
+/* Testimonials: dark charcoal with warm gold tint */
+:root[dir="rtl"] [id="testimonials"],
+:root[dir="rtl"] section:nth-of-type(7) {
+  background: linear-gradient(160deg, #1E1E1E 0%, #252220 40%, #1A1815 100%) !important;
+}
+
+/* Booking: warm cream with gold tint */
+:root[dir="rtl"] #booking {
+  background: linear-gradient(180deg, #FAFAF7 0%, #F7F3EC 50%, #F5F0E8 100%) !important;
+}
+
+/* Services cards: gold-tinted for RTL */
+:root[dir="rtl"] #services .service-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(197, 160, 89, 0.10) !important;
+  box-shadow: 0 4px 24px rgba(197, 160, 89, 0.06), 0 1px 6px rgba(0,0,0,0.03) !important;
+}
+:root[dir="rtl"] #services .service-card:hover {
+  box-shadow: 0 20px 50px rgba(197, 160, 89, 0.14), 0 6px 16px rgba(197,160,89,0.08) !important;
+  border-color: rgba(197, 160, 89, 0.25) !important;
+}
+:root[dir="rtl"] #services .service-card:hover::before {
+  background: linear-gradient(135deg, #C5A059, #D4AF37, #B08D3E) !important;
+}
+:root[dir="rtl"] #services h2,
+:root[dir="rtl"] #services h3 {
+  color: #1E1E1E !important;
+}
+:root[dir="rtl"] #services p {
+  color: rgba(30, 30, 30, 0.45) !important;
+}
+:root[dir="rtl"] #services .svc-arrow {
+  color: #C5A059 !important;
+}
+:root[dir="rtl"] #services .text-indigo-600 {
+  color: #C5A059 !important;
+}
+
+/* Process cards: gold-tinted glass for RTL */
+:root[dir="rtl"] #process .process-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(197, 160, 89, 0.15) !important;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08) !important;
+}
+:root[dir="rtl"] #process .process-card:hover {
+  border-color: rgba(197, 160, 89, 0.30) !important;
+  box-shadow: 0 16px 40px rgba(197, 160, 89, 0.12), 0 4px 12px rgba(0,0,0,0.08) !important;
+}
+:root[dir="rtl"] #process .proc-num {
+  background: linear-gradient(to bottom right, #C5A059, #D4AF37) !important;
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.3) !important;
+}
+:root[dir="rtl"] #process h2 {
+  color: #FFFFFF !important;
+}
+:root[dir="rtl"] #process h3 {
+  color: #FFFFFF !important;
+}
+:root[dir="rtl"] #process p {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+:root[dir="rtl"] #process .text-rose-300 {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] #process .bg-rose-400\/60 {
+  background: rgba(197, 160, 89, 0.4) !important;
+}
+
+/* Gallery: gold accents for RTL */
+:root[dir="rtl"] #gallery h2 {
+  color: #FFFFFF !important;
+}
+:root[dir="rtl"] #gallery p {
+  color: rgba(255, 255, 255, 0.40) !important;
+}
+:root[dir="rtl"] #gallery .text-indigo-300 {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] #gallery .bg-indigo-400\/60 {
+  background: rgba(197, 160, 89, 0.4) !important;
+}
+
+/* Testimonials: gold accents for RTL */
+:root[dir="rtl"] [id="testimonials"] .testi-glass,
+:root[dir="rtl"] section:nth-of-type(7) .testi-glass {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(197, 160, 89, 0.15) !important;
+}
+:root[dir="rtl"] [id="testimonials"] .testi-glass:hover,
+:root[dir="rtl"] section:nth-of-type(7) .testi-glass:hover {
+  border-color: rgba(197, 160, 89, 0.30) !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+}
+:root[dir="rtl"] [id="testimonials"] h2,
+:root[dir="rtl"] section:nth-of-type(7) h2 {
+  color: #FFFFFF !important;
+}
+:root[dir="rtl"] [id="testimonials"] .text-emerald-300,
+:root[dir="rtl"] section:nth-of-type(7) .text-emerald-300 {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] [id="testimonials"] .bg-emerald-400\/60,
+:root[dir="rtl"] section:nth-of-type(7) .bg-emerald-400\/60 {
+  background: rgba(197, 160, 89, 0.4) !important;
+}
+
+/* Booking: gold-themed form for RTL */
+:root[dir="rtl"] #booking h2 {
+  color: #1E1E1E !important;
+}
+:root[dir="rtl"] #booking .text-rose-500 {
+  color: #C5A059 !important;
+}
+:root[dir="rtl"] #booking .text-rose-600 {
+  color: #C5A059 !important;
+}
+:root[dir="rtl"] #booking .text-rose-800 {
+  color: rgba(30, 30, 30, 0.55) !important;
+}
+:root[dir="rtl"] #booking .text-rose-400 {
+  color: rgba(30, 30, 30, 0.45) !important;
+}
+:root[dir="rtl"] #booking .text-rose-300 {
+  color: rgba(30, 30, 30, 0.40) !important;
+}
+:root[dir="rtl"] #booking .text-rose-900 {
+  color: #1E1E1E !important;
+}
+:root[dir="rtl"] #booking .bg-rose-50 {
+  background: rgba(197, 160, 89, 0.05) !important;
+}
+:root[dir="rtl"] #booking .border-rose-200 {
+  border-color: rgba(197, 160, 89, 0.15) !important;
+}
+:root[dir="rtl"] #booking .form-input {
+  border-color: rgba(197, 160, 89, 0.15) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+:root[dir="rtl"] #booking .form-input:focus {
+  border-color: #C5A059 !important;
+  box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.10), 0 2px 8px rgba(197, 160, 89, 0.06) !important;
+}
+:root[dir="rtl"] #booking .time-slot {
+  border-color: rgba(197, 160, 89, 0.20) !important;
+  color: rgba(30, 30, 30, 0.50) !important;
+}
+:root[dir="rtl"] #booking .time-slot:hover:not(.selected) {
+  border-color: #C5A059 !important;
+  color: #C5A059 !important;
+}
+:root[dir="rtl"] #booking .time-slot.selected {
+  background: #C5A059 !important;
+  border-color: transparent !important;
+  color: #1E1E1E !important;
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.30) !important;
+}
+:root[dir="rtl"] #booking .time-slot.selected::before {
+  background: #C5A059 !important;
+}
+:root[dir="rtl"] #booking .bg-rose-100 {
+  background: rgba(197, 160, 89, 0.10) !important;
+}
+:root[dir="rtl"] #booking .text-rose-500 {
+  color: #C5A059 !important;
+}
+:root[dir="rtl"] #booking .bg-gradient-to-r.from-rose-400 {
+  background: linear-gradient(to right, #C5A059, #D4AF37) !important;
+}
+:root[dir="rtl"] #booking .dot-class-rose {
+  background: #C5A059 !important;
+}
+:root[dir="rtl"] #booking .text-rose-100 {
+  color: rgba(197, 160, 89, 0.15) !important;
+}
+:root[dir="rtl"] #booking .bg-rose-200 {
+  background: rgba(197, 160, 89, 0.15) !important;
+}
+
+/* About: gold-themed for RTL */
+:root[dir="rtl"] #about h2 {
+  color: #1E1E1E !important;
+}
+:root[dir="rtl"] #about .text-amber-600 {
+  color: #C5A059 !important;
+}
+:root[dir="rtl"] #about .text-amber-700 {
+  color: #8B7355 !important;
+}
+:root[dir="rtl"] #about .text-amber-800\/50 {
+  color: rgba(30, 30, 30, 0.45) !important;
+}
+:root[dir="rtl"] #about .text-amber-900 {
+  color: #1E1E1E !important;
+}
+:root[dir="rtl"] #about .text-amber-800\/45 {
+  color: rgba(30, 30, 30, 0.40) !important;
+}
+:root[dir="rtl"] #about .bg-amber-100\/40 {
+  background: rgba(197, 160, 89, 0.06) !important;
+}
+
+/* TrustBar: gold border for RTL */
+:root[dir="rtl"] .border-stone-200\/60 {
+  border-color: rgba(197, 160, 89, 0.12) !important;
+}
+:root[dir="rtl"] .text-stone-300 {
+  color: rgba(197, 160, 89, 0.35) !important;
+}
+
+/* Footer: gold accents for RTL */
+:root[dir="rtl"] #contact .via-rose-500\/30 {
+  background: linear-gradient(to right, transparent, rgba(197, 160, 89, 0.30), transparent) !important;
+}
+:root[dir="rtl"] #contact .from-rose-500 {
+  background: linear-gradient(to bottom right, #C5A059, #D4AF37) !important;
+}
+:root[dir="rtl"] #contact .text-rose-400 {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] #contact .text-rose-500 {
+  color: #C5A059 !important;
+}
+:root[dir="rtl"] #contact .hover\:bg-rose-500:hover {
+  background: #C5A059 !important;
+}
+:root[dir="rtl"] #contact .hover\:text-rose-400:hover {
+  color: #D4AF37 !important;
+}
+:root[dir="rtl"] #contact .bg-rose-500\/10 {
+  background: rgba(197, 160, 89, 0.10) !important;
+}
+:root[dir="rtl"] #contact .border-rose-500\/15 {
+  border-color: rgba(197, 160, 89, 0.15) !important;
+}
+:root[dir="rtl"] #contact .text-rose-300 {
+  color: #D4AF37 !important;
 }
 
 /* ================================================================== */
@@ -372,25 +719,52 @@ select.form-input {
 /* ================================================================== */
 
 :root[dir="rtl"] .btn-cta {
-  padding-block: 1rem !important;           /* More vertical padding */
-  border-radius: 1rem !important;           /* Rounder corners */
+  padding-block: 1rem !important;
+  border-radius: 1rem !important;
   font-weight: 700 !important;
   font-size: 14px !important;
   letter-spacing: normal !important;
+  background: #C5A059 !important;
+  color: #1E1E1E !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4) !important;
+}
+:root[dir="rtl"] .btn-cta:hover {
+  background: #D4AF37 !important;
+  color: #1E1E1E !important;
+  box-shadow: 0 8px 30px rgba(197, 160, 89, 0.55) !important;
 }
 
-/* Hero CTA specifically: even more padding */
+/* Hero CTA specifically: even more padding + solid gold */
 :root[dir="rtl"] #hero .btn-cta {
   padding-block: 1.1rem !important;
   padding-inline: 2.25rem !important;
   border-radius: 1.125rem !important;
   font-size: 15px !important;
+  background: #C5A059 !important;
+  color: #1E1E1E !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4) !important;
+}
+:root[dir="rtl"] #hero .btn-cta:hover {
+  background: #D4AF37 !important;
+  color: #1E1E1E !important;
+  box-shadow: 0 8px 30px rgba(197, 160, 89, 0.55) !important;
 }
 
-/* Booking confirm button: more generous */
+/* Booking confirm button: more generous + solid gold */
 :root[dir="rtl"] .btn-cta[class*="px-10"] {
   padding-block: 1.15rem !important;
   border-radius: 1.125rem !important;
+  background: #C5A059 !important;
+  color: #1E1E1E !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4) !important;
+}
+:root[dir="rtl"] .btn-cta[class*="px-10"]:hover {
+  background: #D4AF37 !important;
+  color: #1E1E1E !important;
+  box-shadow: 0 8px 30px rgba(197, 160, 89, 0.55) !important;
 }
 
 /* ================================================================== */
