@@ -229,13 +229,18 @@
 }
 /* Lines 2+: charcoal → dark gold gradient */
 .hero-heading-gold-end {
-  background: linear-gradient(to right, #1E1E1E, #8B7355) !important;
+  display: inline-block; /* REQUIRED: background-clip:text fails on inline spans */
+  background-image: linear-gradient(to right, #1E1E1E, #8B7355) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
+  color: transparent !important; /* Fallback for non-webkit browsers */
 }
 :root[dir="rtl"] .hero-heading-gold-end {
-  background: linear-gradient(to left, #1E1E1E, #8B7355) !important;
+  background-image: linear-gradient(to left, #1E1E1E, #8B7355) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 /* Gold underline accent bar */
 .hero-heading-luxury::after {
